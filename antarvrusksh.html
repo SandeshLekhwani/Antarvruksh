@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Antarvruksh — Heal Naturally, Live Holistically</title>
+    <link rel="icon" href="https://sandeshlekhwani.github.io/Antarvruksh//logo.png" type="image/png">
     <!-- Google Fonts: Montserrat for general text, and a more traditional serif for headings (optional) -->
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;600;700&family=Playfair+Display:wght@400;700&display=swap" rel="stylesheet">
     <!-- Font Awesome for Icons -->
@@ -71,13 +72,22 @@
             border-radius: 50%;
             background: rgba(0, 240, 181, 0.5);
             box-shadow: 0 0 8px rgba(0, 240, 181, 0.4);
-            animation: twinkle 7s infinite ease-in-out alternate;
+            animation: float-star 20s infinite linear;
             will-change: opacity, transform;
         }
 
-        @keyframes twinkle {
-            0% { opacity: 0.1; transform: scale(0.8); }
-            100% { opacity: 0.7; transform: scale(1.2); }
+        @keyframes float-star {
+            0% {
+                transform: translateY(0) scale(0.8);
+                opacity: 0;
+            }
+            10%, 90% {
+                opacity: 0.7;
+            }
+            100% {
+                transform: translateY(-110vh) scale(1.2);
+                opacity: 0;
+            }
         }
 
         /* Main Container for content */
