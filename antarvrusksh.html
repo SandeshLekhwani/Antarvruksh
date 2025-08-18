@@ -1,0 +1,1265 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Antarvruksh — Heal Naturally, Live Holistically</title>
+    <!-- Google Fonts: Montserrat for general text, and a more traditional serif for headings (optional) -->
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;600;700&family=Playfair+Display:wght@400;700&display=swap" rel="stylesheet">
+    <!-- Font Awesome for Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+
+    <!-- Embedded CSS -->
+    <style>
+        /* Define color variables for easy theming */
+        :root {
+            /* New purple and indigo theme */
+            --color-bg-main: #f4f1fa; /* Light lavender gray */
+            --color-primary-purple: #6B46C1; /* Medium Purple */
+            --color-primary-purple-dark: #4C338B; /* Darker Purple */
+            --color-accent-lavender: #B49DFF; /* Light Lavender from gradient */
+            --color-dark-bg: #1A202C; /* Very Dark Blue/Gray */
+
+            --color-text-on-light: #2D3748; /* Charcoal Gray for text on light background */
+            --color-text-on-dark: #E2E8F0; /* Off-white for text on dark background */
+        }
+
+        /* Basic Reset */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: 'Montserrat', sans-serif;
+            background-color: var(--color-bg-main);
+            color: var(--color-text-on-light);
+            line-height: 1.6;
+            overflow-x: hidden; /* Prevent horizontal scroll */
+        }
+        body.sidebar-open {
+            overflow: hidden; /* Prevent scrolling when sidebar is open */
+        }
+
+        a {
+            color: inherit;
+            text-decoration: none;
+        }
+
+        /* Animated Background */
+        .background-container {
+            position: fixed;
+            inset: 0;
+            z-index: -1;
+            overflow: hidden;
+            background-color: var(--color-bg-main);
+        }
+        
+        .background-gradient {
+            position: absolute;
+            inset: 0;
+            background-image: radial-gradient(circle at 80% 20%, #B49DFF 0%, #E6E5ED00 40%),
+                              radial-gradient(circle at 15% 90%, #a29dff4d 0%, #E6E5ED00 30%);
+        }
+
+        .aura {
+            position: absolute;
+            border-radius: 50%;
+            filter: blur(100px);
+            opacity: 0.5;
+            will-change: transform;
+        }
+
+        #aura1 {
+            width: 55vmax;
+            height: 55vmax;
+            top: -20%;
+            right: -20%;
+            background: linear-gradient(to bottom right, rgba(180, 157, 255, 0.2), rgba(107, 70, 193, 0.1));
+        }
+
+        #aura2 {
+            width: 50vmax;
+            height: 50vmax;
+            bottom: -25%;
+            left: -20%;
+            background: linear-gradient(to top right, rgba(180, 157, 255, 0.25), rgba(76, 51, 139, 0.15));
+        }
+
+        #star-field {
+            position: absolute;
+            inset: 0;
+        }
+
+        .star {
+            position: absolute;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.9);
+            box-shadow: 0 0 8px rgba(255, 255, 255, 0.8);
+            animation: twinkle 5s infinite ease-in-out alternate;
+            will-change: opacity;
+        }
+
+        @keyframes twinkle {
+            0% { opacity: 0.2; }
+            100% { opacity: 1; }
+        }
+
+        /* Main Container for content */
+        .main-container {
+            width: 100%;
+            max-width: 1200px;
+            margin: auto;
+            padding: 0 20px;
+            position: relative;
+            z-index: 2;
+        }
+
+        /* Glass Card Component */
+        .glass-card {
+            position: relative;
+            overflow: hidden;
+            border-radius: 1.5rem;
+            background: rgba(255, 255, 255, 0.4); 
+            border: 1px solid rgba(255, 255, 255, 0.5);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            box-shadow: 0 8px 32px rgba(0,0,0,0.1);
+            padding: 2.5rem;
+            color: var(--color-text-on-light);
+        }
+        .glass-card::before {
+            content: '';
+            position: absolute;
+            top: -5rem; left: -5rem;
+            width: 15rem; height: 15rem;
+            background: radial-gradient(circle, rgba(255,255,255,0.15) 0%, transparent 70%);
+            pointer-events: none;
+            opacity: 0.8;
+        }
+
+        /* Improved Navigation Bar (Pill Bar - now only logo and toggle) */
+        .main-header {
+            position: sticky;
+            top: 1rem;
+            z-index: 50;
+            width: auto;
+            max-width: 900px;
+            margin: 1rem auto;
+            border-radius: 9999px;
+            background: linear-gradient(90deg, var(--color-primary-purple-dark) 0%, var(--color-primary-purple) 100%);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            box-shadow: 0 8px 30px rgba(0,0,0,0.2);
+            padding: 0.75rem 2.5rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            transition: all 0.3s ease-in-out;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+        }
+        .main-header:hover {
+            box-shadow: 0 10px 40px rgba(0,0,0,0.3), 0 0 20px rgba(180, 157, 255, 0.5);
+            transform: translateY(-4px);
+        }
+
+        .header-nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            width: 100%;
+        }
+
+        .header-logo {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+            font-family: 'Playfair Display', serif;
+            font-size: 1.8rem;
+            font-weight: 700;
+            color: var(--color-text-on-dark);
+            letter-spacing: 0.05em;
+            text-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+        }
+        .header-logo img {
+            height: 45px;
+            width: 45px;
+            object-fit: contain;
+            flex-shrink: 0;
+            filter: drop-shadow(0 0 5px rgba(255, 255, 255, 0.5));
+        }
+        .header-logo span {
+            color: var(--color-text-on-dark);
+            text-shadow: 0 0 5px rgba(0, 0, 0, 0.3);
+        }
+
+        /* Hamburger Menu for Mobile */
+        .menu-toggle {
+            display: flex;
+            flex-direction: column;
+            cursor: pointer;
+            gap: 6px;
+            margin-left: auto;
+        }
+
+        .menu-toggle .bar {
+            width: 25px;
+            height: 3px;
+            background-color: var(--color-text-on-dark);
+            border-radius: 2px;
+            transition: all 0.3s ease;
+        }
+
+        /* Vertical Sidebar Navigation (Right Side) */
+        #vertical-nav-sidebar {
+            position: fixed;
+            top: 0;
+            right: -300px;
+            width: 280px;
+            height: 100%;
+            background: rgba(26, 32, 44, 0.95); /* Dark background for sidebar */
+            backdrop-filter: blur(25px);
+            -webkit-backdrop-filter: blur(25px);
+            box-shadow: -5px 0 15px rgba(0,0,0,0.3);
+            z-index: 1001;
+            transition: right 0.4s cubic-bezier(0.7, 0, 0.3, 1);
+            display: flex;
+            flex-direction: column;
+            padding: 2rem 1.5rem;
+            padding-top: 5rem;
+            align-items: flex-start;
+        }
+
+        #vertical-nav-sidebar.active {
+            right: 0;
+        }
+
+        #vertical-nav-sidebar .close-sidebar-btn {
+            position: absolute;
+            top: 1rem;
+            right: 1.5rem;
+            background: none;
+            border: none;
+            color: var(--color-text-on-dark);
+            font-size: 2.5rem;
+            cursor: pointer;
+            line-height: 1;
+            transition: transform 0.2s ease;
+        }
+        #vertical-nav-sidebar .close-sidebar-btn:hover {
+            transform: scale(1.1) rotate(5deg);
+        }
+
+        .nav-links-vertical {
+            list-style: none;
+            padding: 0;
+            width: 100%;
+            margin-top: 2rem;
+        }
+
+        .nav-links-vertical li {
+            margin-bottom: 1.5rem;
+        }
+
+        .nav-links-vertical a, .nav-links-vertical button {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            padding: 0.8rem 1rem;
+            border-radius: 0.75rem;
+            font-weight: 600;
+            color: var(--color-text-on-dark);
+            transition: all 0.3s ease;
+            background: transparent;
+            border: none;
+            cursor: pointer;
+            width: 100%;
+            text-align: left;
+            font-size: 1.1rem;
+        }
+
+        .nav-links-vertical a i, .nav-links-vertical button i {
+            font-size: 1.3rem;
+            color: var(--color-accent-lavender);
+        }
+
+        .nav-links-vertical a:hover, .nav-links-vertical button:hover {
+            background: rgba(255, 255, 255, 0.1);
+            color: var(--color-accent-lavender);
+            transform: translateX(5px);
+            box-shadow: 0 0 10px rgba(180, 157, 255, 0.3);
+        }
+
+        /* Overlay when sidebar is open */
+        .sidebar-overlay {
+            position: fixed;
+            inset: 0;
+            background: rgba(0,0,0,0.5);
+            z-index: 1000;
+            display: none;
+            opacity: 0;
+            transition: opacity 0.4s ease;
+        }
+        .sidebar-overlay.active {
+            display: block;
+            opacity: 1;
+        }
+
+        /* General Sections */
+        section {
+            padding: 3rem 0;
+        }
+        .hero {
+            padding-top: 6rem;
+            padding-bottom: 3rem;
+        }
+
+        h2 {
+            font-family: 'Playfair Display', serif;
+            font-size: clamp(2.2rem, 4vw, 3.5rem);
+            font-weight: 700;
+            color: var(--color-primary-purple-dark);
+            text-align: center;
+            margin-bottom: 2.5rem;
+            position: relative;
+        }
+
+        h2::after {
+            content: '';
+            display: block;
+            width: 80px;
+            height: 3px;
+            background: linear-gradient(to right, transparent, var(--color-accent-lavender), transparent);
+            margin: 1rem auto 0;
+            border-radius: 5px;
+        }
+        
+        h3 {
+            font-family: 'Playfair Display', serif;
+            font-size: clamp(1.8rem, 3vw, 2.5rem);
+            font-weight: 700;
+            color: var(--color-primary-purple);
+            margin-bottom: 1rem;
+        }
+
+        p {
+            font-size: 1.05rem;
+            margin-bottom: 1rem;
+        }
+
+        /* Hero Section */
+        .hero {
+            text-align: center;
+            display: flex;
+            align-items: center;
+            min-height: 80vh;
+        }
+
+        .hero-content {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .hero h1 {
+            font-family: 'Playfair Display', serif;
+            font-size: clamp(3.5rem, 6vw, 5.5rem);
+            font-weight: 700;
+            line-height: 1.1;
+            margin-bottom: 1.5rem;
+            color: var(--color-text-on-light);
+        }
+        
+        .hero h1 .inner-strength-text {
+            font-family: 'Montserrat', sans-serif;
+            font-size: clamp(2.5rem, 4.5vw, 4rem);
+            display: block;
+            margin-top: 0.5rem;
+            color: var(--color-text-on-light);
+            text-shadow: none;
+        }
+
+        .hero p {
+            font-size: clamp(1.1rem, 1.8vw, 1.3rem);
+            max-width: 700px;
+            margin: 1.5rem auto 2.5rem;
+        }
+        .hero-actions {
+            display: flex;
+            justify-content: center;
+            gap: 1.5rem;
+            flex-wrap: wrap;
+            margin-top: 2rem;
+        }
+
+        /* Generic Button */
+        .btn {
+            padding: 0.9rem 1.8rem;
+            border-radius: 9999px;
+            border: 1px solid transparent;
+            background: linear-gradient(45deg, var(--color-primary-purple), var(--color-accent-lavender));
+            color: white;
+            font-weight: 600;
+            font-size: 1rem;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 0.5rem;
+        }
+        .btn:hover {
+            background: linear-gradient(45deg, var(--color-accent-lavender), var(--color-primary-purple));
+            box-shadow: 0 6px 20px rgba(107, 70, 193, 0.4);
+            transform: translateY(-2px);
+        }
+        .btn-secondary {
+            background: rgba(255, 255, 255, 0.7);
+            border: 1px solid var(--color-primary-purple);
+            color: var(--color-primary-purple);
+        }
+        .btn-secondary:hover {
+            background: var(--color-primary-purple);
+            color: white;
+        }
+
+        /* Specific CTA Buttons */
+        .contact-cta-hero, .contact-cta-suvarnaprashan, #modal-submit-btn, .fixed-float-btn {
+            background: var(--color-dark-bg);
+            color: var(--color-accent-lavender);
+            border: 1px solid var(--color-accent-lavender);
+        }
+        .contact-cta-hero:hover, .contact-cta-suvarnaprashan:hover, #modal-submit-btn:hover, .fixed-float-btn:hover {
+            background: #2D3748; /* Slightly lighter dark bg */
+            box-shadow: 0 6px 15px rgba(0,0,0,0.3), 0 0 15px rgba(180, 157, 255, 0.5);
+        }
+        
+        .contact-cta-hero i, .contact-cta-suvarnaprashan i, .fixed-float-btn i {
+             color: var(--color-accent-lavender);
+        }
+
+        /* Grid Layouts */
+        .grid-layout {
+            display: grid;
+            gap: 2.5rem;
+            align-items: start;
+        }
+        @media (min-width: 768px) {
+            .grid-layout.col-2 { grid-template-columns: repeat(2, 1fr); }
+            .grid-layout.col-3 { grid-template-columns: repeat(3, 1fr); }
+        }
+
+        /* Suvarnaprashan Section */
+        #suvarnaprashan .content-block dt {
+            font-weight: 600;
+            color: var(--color-primary-purple-dark);
+            margin-top: 1rem;
+            margin-bottom: 0.2rem;
+        }
+        
+        #suvarnaprashan .content-block ul li .fas.fa-check-circle {
+            color: var(--color-primary-purple);
+            margin-right: 0.75rem;
+            font-size: 1.1rem;
+            flex-shrink: 0;
+            margin-top: 0.2rem;
+        }
+
+        #suvarnaprashan .icon-circle {
+            width: 80px;
+            height: 80px;
+            border-radius: 50%;
+            background: rgba(107, 70, 193, 0.1);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 1.5rem;
+            border: 1px solid rgba(107, 70, 193, 0.2);
+        }
+        #suvarnaprashan .icon-circle i {
+            font-size: 2.5rem;
+            color: var(--color-primary-purple);
+        }
+
+        /* Suvarnaprashan Calendar Specific Styling */
+        .suvarnaprashan-calendar-container {
+            margin-top: 3rem;
+            padding-top: 2rem;
+            border-top: 1px solid rgba(0, 0, 0, 0.1);
+            text-align: center;
+        }
+        
+        .suvarnaprashan-calendar-list {
+            list-style: none;
+            padding: 0;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 1rem;
+            text-align: left;
+            margin-top: 1.5rem;
+        }
+        .suvarnaprashan-calendar-list li {
+            background: rgba(255, 255, 255, 0.6);
+            padding: 1.2rem 1.8rem;
+            border-radius: 1rem;
+            border: 1px solid rgba(0, 0, 0, 0.05);
+            font-weight: 500;
+            transition: transform 0.2s ease, box-shadow 0.2s ease;
+        }
+        .suvarnaprashan-calendar-list li:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 25px rgba(107, 70, 193, 0.2);
+        }
+        .suvarnaprashan-calendar-list li strong {
+            color: var(--color-primary-purple-dark);
+            font-weight: 700;
+            display: block;
+            margin-bottom: 0.4rem;
+            font-size: 1.1rem;
+        }
+        
+        /* New section for the FAQ button itself, to place it between sections */
+        .faq-button-section {
+            text-align: center;
+            padding: 2rem 0;
+            margin-top: 0;
+        }
+
+        /* Suvarnaprashan FAQ Section */
+        #suvarnaprashan-faq-container {
+            padding: 0;
+            background: transparent;
+            text-align: left;
+            opacity: 0;
+            max-height: 0;
+            overflow: hidden;
+            transition: opacity 0.5s ease-out, max-height 0.7s ease-out;
+            border-radius: 1.5rem;
+            box-shadow: none;
+            color: var(--color-text-on-light);
+        }
+        #suvarnaprashan-faq-container.visible {
+            opacity: 1;
+            max-height: 1000px; /* Increased max height */
+        }
+        #suvarnaprashan-faq-container .glass-card {
+            margin-top: 3rem;
+        }
+        #suvarnaprashan-faq-container h2 {
+            color: var(--color-primary-purple-dark);
+        }
+        .faq-item {
+            background: rgba(255, 255, 255, 0.5);
+            padding: 1.2rem 1.8rem;
+            border-radius: 1rem;
+            margin-bottom: 1rem;
+            color: var(--color-text-on-light);
+            border: 1px solid rgba(0,0,0,0.05);
+        }
+        .faq-item strong {
+            display: block;
+            margin-bottom: 0.5rem;
+            color: var(--color-primary-purple-dark);
+        }
+
+        /* Testimonials */
+        .testimonial-card {
+            text-align: center;
+            font-style: italic;
+            position: relative;
+            padding: 2rem;
+            background: rgba(255, 255, 255, 0.6);
+        }
+        
+        .testimonial-card::before, .testimonial-card::after {
+            content: "“";
+            font-family: serif;
+            font-size: 4rem;
+            color: var(--color-accent-lavender);
+            position: absolute;
+            opacity: 0.5;
+            top: 0.5rem;
+            left: 1rem;
+            line-height: 1;
+        }
+        .testimonial-card::after {
+            content: "”";
+            right: 1rem;
+            left: unset;
+            bottom: 0.5rem;
+            top: unset;
+        }
+        .testimonial-author {
+            font-weight: 600;
+            color: var(--color-primary-purple-dark);
+            margin-top: 1rem;
+            display: block;
+        }
+
+        /* Blog & Contact Sections */
+        .blog-post {
+            background: rgba(255, 255, 255, 0.5);
+            border-radius: 1rem;
+            padding: 1.5rem;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.05);
+            transition: transform 0.2s ease, box-shadow 0.2s ease;
+            text-align: left;
+            color: var(--color-text-on-light);
+            border: 1px solid rgba(0,0,0,0.1);
+        }
+        .blog-post:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 6px 15px rgba(107, 70, 193, 0.15);
+        }
+        .blog-post h3 {
+            color: var(--color-primary-purple-dark);
+            font-size: 1.6rem;
+            margin-bottom: 0.8rem;
+        }
+        .blog-post a {
+            color: var(--color-primary-purple);
+            font-weight: 600;
+            margin-top: 1rem;
+            display: inline-block;
+            text-decoration: underline;
+        }
+        .blog-post a:hover {
+            color: var(--color-primary-purple-dark);
+        }
+
+        .contact-info {
+            background: rgba(255, 255, 255, 0.5);
+            padding: 2rem;
+            border-radius: 1rem;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.05);
+            color: var(--color-text-on-light);
+            border: 1px solid rgba(0,0,0,0.1);
+        }
+        .contact-info h3 { color: var(--color-primary-purple-dark); }
+        .contact-info i {
+            color: var(--color-primary-purple);
+            margin-right: 0.5rem;
+        }
+
+        /* Footer */
+        .main-footer {
+            padding: 3rem 0;
+            text-align: center;
+            color: var(--color-text-on-light);
+            font-size: 0.9rem;
+            background: transparent;
+        }
+
+        /* Modal Styles */
+        .modal-overlay {
+            position: fixed;
+            inset: 0;
+            background: rgba(0,0,0,0.7);
+            backdrop-filter: blur(8px);
+            -webkit-backdrop-filter: blur(8px);
+            z-index: 1000;
+            display: none;
+            align-items: center;
+            justify-content: center;
+            padding: 1rem;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+        .modal-overlay.visible {
+            display: flex;
+            opacity: 1;
+        }
+        .modal-content {
+            max-width: 550px;
+            width: 90%;
+            position: relative;
+            padding: 2.5rem;
+            border-radius: 1.5rem;
+            background: var(--color-dark-bg);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            box-shadow: 0 10px 40px rgba(0,0,0,0.5);
+            color: var(--color-text-on-dark);
+        }
+        .modal-close-btn {
+            position: absolute;
+            top: 1rem;
+            right: 1.5rem;
+            background: none;
+            border: none;
+            color: var(--color-text-on-dark);
+            font-size: 2.5rem;
+            cursor: pointer;
+            line-height: 1;
+            transition: transform 0.2s ease;
+        }
+        .modal-close-btn:hover {
+            transform: scale(1.1) rotate(5deg);
+        }
+        .modal-content h3 {
+            font-size: 2rem;
+            color: var(--color-accent-lavender);
+            margin-bottom: 1rem;
+            text-align: center;
+        }
+        .modal-content p {
+            color: var(--color-text-on-dark);
+            margin-bottom: 1.5rem;
+            text-align: center;
+        }
+        
+        #appointment-form {
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+        }
+
+        #appointment-form input, #general-contact-form input, #general-contact-form textarea {
+            padding: 1.2rem;
+            font-size: 1.1rem;
+            background: rgba(255, 255, 255, 0.1);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            border-radius: 0.75rem;
+            color: var(--color-text-on-dark);
+        }
+        #appointment-form input::placeholder, #general-contact-form input::placeholder, #general-contact-form textarea::placeholder {
+            color: rgba(226, 232, 240, 0.6);
+        }
+        #appointment-form input:focus, #general-contact-form input:focus, #general-contact-form textarea:focus {
+            outline: none;
+            border-color: var(--color-accent-lavender);
+            box-shadow: 0 0 0 2px rgba(180, 157, 255, 0.4);
+        }
+        
+        /* Floating Fixed Button (formerly dynamic) */
+        .fixed-float-btn {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            z-index: 999;
+            border-radius: 9999px;
+            padding: 15px 25px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.1rem;
+            font-weight: 600;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.4);
+            transition: transform 0.3s ease-in-out, background-color 0.3s ease, box-shadow 0.3s ease;
+            cursor: pointer;
+            white-space: nowrap;
+        }
+        .fixed-float-btn:hover {
+            transform: scale(1.1);
+        }
+
+        /* Responsive Adjustments */
+        @media (max-width: 768px) {
+            .main-header {
+                border-radius: 1.5rem;
+                margin: 1rem;
+                max-width: calc(100% - 2rem);
+            }
+            .header-nav {
+                flex-wrap: nowrap;
+            }
+
+            .menu-toggle.active .bar:nth-child(1) { transform: translateY(9px) rotate(45deg); }
+            .menu-toggle.active .bar:nth-child(2) { opacity: 0; }
+            .menu-toggle.active .bar:nth-child(3) { transform: translateY(-9px) rotate(-45deg); }
+
+            .hero {
+                padding-top: 6rem;
+                min-height: unset;
+            }
+
+            section {
+                padding: 2rem 0;
+            }
+
+            .glass-card { padding: 1.5rem; }
+
+            .grid-layout.col-2, .grid-layout.col-3 {
+                grid-template-columns: 1fr;
+            }
+            .contact-content {
+                grid-template-columns: 1fr;
+            }
+
+            h2 { font-size: clamp(1.8rem, 8vw, 2.5rem); }
+            h3 { font-size: clamp(1.5rem, 6vw, 2rem); }
+            p { font-size: 0.95rem; }
+
+            .hero h1 { font-size: clamp(2.5rem, 10vw, 4rem); }
+            .hero p { font-size: clamp(1rem, 4vw, 1.2rem); }
+            .hero-actions { flex-direction: column; gap: 1rem; }
+            .btn { width: 80%; margin: 0 auto; }
+            .modal-content { width: 95%; }
+
+            .fixed-float-btn {
+                padding: 10px 15px;
+                font-size: 1rem;
+                bottom: 15px;
+                right: 15px;
+            }
+            .fixed-float-btn i {
+                margin-right: 5px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Animated Background -->
+    <div class="background-container">
+        <div class="background-gradient"></div>
+        <div id="aura1" class="aura"></div>
+        <div id="aura2" class="aura"></div>
+        <div id="star-field"></div>
+    </div>
+
+    <!-- Contact Modal (Used for "Ask a Doctor" / General Inquiries) -->
+    <div id="contact-modal" class="modal-overlay">
+        <div class="modal-content">
+            <button class="modal-close-btn">&times;</button>
+            <h3>Connect with Us</h3>
+            <p>Please provide your details and inquiry below:</p>
+            <form id="general-contact-form">
+                <input type="text" id="contact-name" placeholder="Your Name" required>
+                <input type="email" id="contact-email" placeholder="Your Email" required>
+                <textarea id="contact-message" placeholder="Your Message" rows="5" required></textarea>
+                <button type="submit" class="btn">Send Inquiry via WhatsApp</button>
+            </form>
+        </div>
+    </div>
+
+    <!-- Book Appointment Modal (Used for "Book Appointment" CTA and now "Book Now Your Dose" floating button) -->
+    <div id="book-appointment-modal" class="modal-overlay">
+        <div class="modal-content">
+            <button class="modal-close-btn">&times;</button>
+            <h3>Book Your Appointment</h3>
+            <p>Please provide your details for the Suvarnaprashan dose:</p>
+            <form id="appointment-form">
+                <input type="text" id="appointment-parent-name" placeholder="Parent's Name" required>
+                <input type="text" id="appointment-child-name" placeholder="Child's Name" required>
+                <input type="number" id="appointment-child-age" placeholder="Child's Age (Years)" min="0" max="16" required>
+                <button type="submit" id="modal-submit-btn" class="btn">Confirm Appointment via WhatsApp</button>
+            </form>
+        </div>
+    </div>
+
+    <!-- About Us Modal -->
+    <div id="about-us-modal" class="modal-overlay">
+        <div class="modal-content">
+            <button class="modal-close-btn">&times;</button>
+            <h3>About Dr. Sakshi Manjani</h3>
+            <div style="text-align: center; display: flex; flex-direction: column; align-items: center;">
+                <img src="https://placehold.co/150x150/6B46C1/FFFFFF?text=Doctor" alt="Doctor's Photo" style="border-radius: 50%; width: 150px; height: 150px; object-fit: cover; margin-bottom: 1.5rem; border: 3px solid var(--color-accent-lavender);">
+                <p style="font-size: 1.1rem; color: var(--color-text-on-dark); margin-bottom: 0.5rem;">
+                    <strong>BAMS, DYND</strong>
+                </p>
+                <p style="font-size: 1rem; color: var(--color-text-on-dark); opacity: 0.8; display: flex; align-items: center; gap: 0.5rem; margin-bottom: 0.5rem;">
+                    <i class="fab fa-whatsapp" style="color: var(--color-accent-lavender);"></i> +91 9326649001
+                </p>
+                <p style="font-size: 1rem; color: var(--color-text-on-dark); opacity: 0.8;">
+                    8+ years of experience in Ayurveda
+                </p>
+                <p style="font-size: 0.95rem; color: var(--color-text-on-dark); opacity: 0.7; margin-top: 1rem;">
+                    Dedicated to promoting natural health and well-being through personalized Ayurvedic care.
+                </p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Vertical Sidebar Navigation -->
+    <aside id="vertical-nav-sidebar">
+        <button class="close-sidebar-btn">&times;</button>
+        <ul class="nav-links-vertical">
+            <li><a href="#suvarnaprashan"><i class="fas fa-droplet"></i> Suvarnaprashan</a></li>
+            <li><a href="#testimonials"><i class="fas fa-comment-dots"></i> Parents' Review</a></li>
+            <li><a href="#blog"><i class="fas fa-book-reader"></i> Blog</a></li>
+            <li><a href="#contact"><i class="fas fa-phone-alt"></i> Contact Us</a></li>
+            <li><a href="#" id="open-about-us-modal"><i class="fas fa-user-md"></i> About Us</a></li>
+            <li><button class="btn btn-secondary contact-cta-nav"><i class="fab fa-whatsapp"></i> WhatsApp</button></li>
+        </ul>
+    </aside>
+    <!-- Sidebar Overlay -->
+    <div class="sidebar-overlay"></div>
+
+    <!-- Header and Navigation -->
+    <header class="main-header">
+        <nav class="header-nav">
+            <a href="#" class="header-logo">
+                <img src="uploaded:logo 2 antravruksh.jpeg-84e7d62a-249a-4432-abb9-ad1501a30719" alt="Antarvruksh Logo" width="45" height="45" onerror="this.onerror=null;this.src='https://placehold.co/45x45/4C338B/FFFFFF?text=Logo';" loading="lazy">
+                <span>Antarvruksh</span>
+            </a>
+            <div class="menu-toggle">
+                <div class="bar"></div>
+                <div class="bar"></div>
+                <div class="bar"></div>
+            </div>
+        </nav>
+    </header>
+
+    <main class="main-container">
+        <!-- Hero Section -->
+        <section class="hero">
+            <div class="glass-card hero-content">
+                <h1><span>Antarvruksh</span><br><span class="inner-strength-text">Heal Naturally, Live Holistically</span></h1>
+                <p>Discover personalized healing and rejuvenation rooted in the timeless principles of Ayurveda. Nurture your mind, body, and spirit for a balanced life.</p>
+                <div class="hero-actions">
+                    <a href="#suvarnaprashan-calendar-dates" class="btn" ><i class="fas fa-calendar-alt"></i> Suvarnaprashan Calendar</a>
+                    <button class="btn contact-cta-hero"><i class="fas fa-calendar-alt"></i> Book Now Your Dose</button>
+                </div>
+            </div>
+        </section>
+
+        <!-- Suvarnaprashan Section -->
+        <section id="suvarnaprashan">
+            <div class="glass-card">
+                <h2>Suvarnaprashan: Nurturing Your Child's Future</h2>
+                <div class="grid-layout col-2">
+                    <div class="content-block">
+                        <div class="icon-circle"><i class="fas fa-droplet"></i></div>
+                        <h3>What is Suvarnaprashan?</h3>
+                        <dl>
+                            <dt>Ancient Ayurvedic Practice</dt>
+                            <dd>Daily or periodic administration of purified gold (Suvarna bhasma) mixed with honey and medicated ghee to children.</dd>
+                            <dt>Recommended Age</dt>
+                            <dd>From birth up to 16 years, promoting overall health and development.</dd>
+                        </dl>
+                    </div>
+                    <div class="content-block">
+                        <div class="icon-circle"><i class="fas fa-star"></i></div>
+                        <h3>Key Benefits</h3>
+                        <ul>
+                            <li><i class="fas fa-check-circle"></i> Boosts immunity & prevents infections.</li>
+                            <li><i class="fas fa-check-circle"></i> Enhances memory, intellect & concentration.</li>
+                            <li><i class="fas fa-check-circle"></i> Improves digestion & metabolism.</li>
+                            <li><i class="fas fa-check-circle"></i> Supports healthy physical growth.</li>
+                            <li><i class="fas fa-check-circle"></i> Promotes overall vitality & complexion.</li>
+                            <li><i class="fas fa-check-circle"></i> Reduces recurrence of allergic conditions.</li>
+                        </ul>
+                    </div>
+                </div>
+                
+                <!-- Suvarnaprashan Calendar Dates -->
+                <div id="suvarnaprashan-calendar-dates" class="suvarnaprashan-calendar-container">
+                    <h3>Upcoming 2025 Pushya Nakshatra Dates</h3>
+                    <p id="current-dose-display" style="font-size: 1.2rem; margin-bottom: 1rem; font-weight: 600;"></p>
+                    <button id="next-dose-btn" class="btn btn-secondary" style="margin-top: 1rem;"><i class="fas fa-calendar-check"></i> Find My Next Dose</button>
+                    <ul id="upcoming-dates-list" class="suvarnaprashan-calendar-list" style="display: none;">
+                        <!-- Dates will be dynamically inserted here by JavaScript -->
+                    </ul>
+                    <button id="show-all-dates-btn" class="btn btn-secondary" style="margin-top: 1rem; display: none;"><i class="fas fa-eye"></i> Show All Upcoming Dates</button>
+                </div>
+            </div>
+        </section>
+        
+        <!-- Testimonials Section -->
+        <section id="testimonials">
+            <div class="glass-card">
+                <h2>Parents' Reviews</h2>
+                <div class="grid-layout col-3">
+                    <div class="testimonial-card">
+                        <p>“Antarvruksh provided a truly transformative experience for my child. I feel more balanced and energized as a parent than ever before.”</p>
+                        <span class="testimonial-author">— Priya S.</span>
+                    </div>
+                    <div class="testimonial-card">
+                        <p>“The personalized care and deep understanding of my child's needs were exceptional. Highly recommend their holistic approach.”</p>
+                        <span class="testimonial-author">— Rohan K.</span>
+                    </div>
+                    <div class="testimonial-card">
+                        <p>“After struggling with my child's immunity, I finally found lasting relief and guidance here. A sanctuary for healing.”</p>
+                        <span class="testimonial-author">— Aisha M.</span>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- New Blog Section -->
+        <section id="blog">
+            <div class="glass-card">
+                <h2>Our Blog</h2>
+                <div class="grid-layout col-2">
+                    <div class="blog-post">
+                        <h3>5 Ayurvedic Herbs for Daily Use</h3>
+                        <p>Discover powerful herbs like Turmeric, Ashwagandha, and Tulsi that can be easily incorporated into your daily routine for enhanced well-being and vitality.</p>
+                        <a href="#">Read More &rarr;</a>
+                    </div>
+                    <div class="blog-post">
+                        <h3>Morning Routines Backed by Ayurveda</h3>
+                        <p>Learn about Dinacharya (daily routine) and how simple practices like oil pulling, tongue scraping, and warm water can transform your mornings.</p>
+                        <a href="#">Read More &rarr;</a>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- New Contact Us Section -->
+        <section id="contact">
+            <div class="glass-card">
+                <h2>Contact Us</h2>
+                <div class="contact-content">
+                    <div class="contact-info">
+                        <h3>Get in Touch</h3>
+                        <p><i class="fas fa-user-md"></i> Dr. Sakshi Manjani</p>
+                        <p><i class="fas fa-phone"></i> +91 9326649001</p>
+                        <p><i class="fas fa-envelope"></i> drsakshimanjani@gmail.com</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- FAQ Button Section -->
+        <section class="faq-button-section">
+            <button class="btn contact-cta-suvarnaprashan"><i class="fas fa-question-circle"></i> Suvarnaprashan FAQ</button>
+        </section>
+
+        <!-- Suvarnaprashan FAQ Section -->
+        <section id="suvarnaprashan-faq-container">
+            <div class="glass-card">
+                <h2>Frequently Asked Questions</h2>
+                <div class="faq-item">
+                    <strong>Q: What is the ideal age for Suvarnaprashan?</strong>
+                    <p>A: Suvarnaprashan can be administered from birth up to 16 years of age.</p>
+                </div>
+                <div class="faq-item">
+                    <strong>Q: How often should Suvarnaprashan be given?</strong>
+                    <p>A: It is recommended daily, or at least monthly on Pushya Nakshatra days for maximum benefits.</p>
+                </div>
+                <div class="faq-item">
+                    <strong>Q: Are there any side effects?</strong>
+                    <p>A: When prepared and administered correctly, Suvarnaprashan has no known side effects and is safe for children.</p>
+                </div>
+                <div class="faq-item">
+                    <strong>Q: What are the main ingredients?</strong>
+                    <p>A: It typically contains purified gold bhasma, honey and medicated ghee infused with specific herbs.</p>
+                </div>
+                <div class="faq-item">
+                    <strong>Q: Can it be given with other medicines?</strong>
+                    <p>A: Yes, it is generally safe to administer alongside other conventional medications; consult your pediatrician for specific cases.</p>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <!-- Footer -->
+    <footer class="main-footer">
+        <p>&copy; 2025 Antarvruksh Ayurveda. All rights reserved.</p>
+        <p>Managed by Dr. Sakshi Manjani (Antarvruksh)</p>
+    </footer>
+
+    <!-- Fixed Floating Button -->
+    <button id="fixed-float-btn" class="fixed-float-btn">
+        <i class="fas fa-calendar-alt"></i>
+        <span>Book Now Your Dose</span>
+    </button>
+
+    <!-- Embedded JavaScript -->
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // --- Starry Background Effect ---
+            const starField = document.getElementById('star-field');
+            const starCount = 150;
+            for (let i = 0; i < starCount; i++) {
+                const star = document.createElement('div');
+                star.className = 'star';
+                const size = Math.random() * 2 + 1;
+                star.style.width = `${size}px`;
+                star.style.height = `${size}px`;
+                star.style.left = `${Math.random() * 100}%`;
+                star.style.top = `${Math.random() * 100}%`;
+                star.style.animationDuration = `${3 + Math.random() * 4}s`;
+                star.style.animationDelay = `${Math.random() * 5}s`;
+                starField.appendChild(star);
+            }
+
+            // --- Suvarnaprashan Calendar Dynamic Update / Game Logic ---
+            const pushyaNakshatraDates2025 = [
+                { month: 'January', date: 14, day: 'Tuesday', endDate: new Date(2025, 0, 15, 0, 8, 0) },
+                { month: 'February', date: 11, day: 'Monday', endDate: new Date(2025, 1, 11, 18, 34, 0) },
+                { month: 'March', date: 10, day: 'Monday', endDate: new Date(2025, 2, 10, 0, 51, 0) },
+                { month: 'April', date: 6, day: 'Sunday', endDate: new Date(2025, 3, 7, 6, 25, 0) },
+                { month: 'May', date: 3, day: 'Saturday', endDate: new Date(2025, 4, 4, 0, 53, 0) },
+                { month: 'May', date: 31, day: 'Saturday', endDate: new Date(2025, 4, 31, 21, 7, 0) },
+                { month: 'June', date: 27, day: 'Friday', endDate: new Date(2025, 5, 28, 6, 35, 0) },
+                { month: 'July', date: 25, day: 'Friday', endDate: new Date(2025, 6, 25, 16, 0, 0) },
+                { month: 'August', date: 21, day: 'Thursday', endDate: new Date(2025, 7, 22, 0, 8, 0) },
+                { month: 'September', date: 17, day: 'Wednesday', endDate: new Date(2025, 8, 18, 6, 32, 0) },
+                { month: 'October', date: 15, day: 'Wednesday', endDate: new Date(2025, 9, 15, 12, 0, 0) },
+                { month: 'November', date: 11, day: 'Tuesday', endDate: new Date(2025, 10, 11, 18, 17, 0) },
+                { month: 'December', date: 8, day: 'Monday', endDate: new Date(2025, 11, 9, 2, 52, 0) }
+            ];
+
+            const suvarnaprashanCalendarContainer = document.getElementById('suvarnaprashan-calendar-dates');
+            const currentDoseDisplay = document.getElementById('current-dose-display');
+            const nextDoseBtn = document.getElementById('next-dose-btn');
+            const upcomingDatesList = document.getElementById('upcoming-dates-list');
+            const showAllDatesBtn = document.getElementById('show-all-dates-btn');
+
+            let upcomingFilteredDates = [];
+            let currentDisplayIndex = -1;
+
+            function getOrdinalSuffix(day) {
+                if (day > 3 && day < 21) return 'th';
+                switch (day % 10) {
+                    case 1: return 'st';
+                    case 2: return 'nd';
+                    case 3: return 'rd';
+                    default: return 'th';
+                }
+            }
+
+            function initializeCalendarGame() {
+                const today = new Date();
+                upcomingFilteredDates = pushyaNakshatraDates2025.filter(dateInfo => dateInfo.endDate.getTime() >= today.getTime());
+
+                currentDisplayIndex = -1;
+                currentDoseDisplay.textContent = "Click 'Find My Next Dose' to see the next date.";
+                upcomingDatesList.style.display = 'none';
+                showAllDatesBtn.style.display = 'none';
+                nextDoseBtn.style.display = 'inline-flex';
+                currentDoseDisplay.style.display = 'flex';
+                nextDoseBtn.innerHTML = '<i class="fas fa-calendar-check"></i> Find My Next Dose';
+            }
+
+            nextDoseBtn.addEventListener('click', () => {
+                currentDoseDisplay.style.display = 'flex';
+                upcomingDatesList.style.display = 'none';
+
+                if (currentDisplayIndex + 1 < upcomingFilteredDates.length) {
+                    currentDisplayIndex++;
+                    const nextDate = upcomingFilteredDates[currentDisplayIndex];
+                    currentDoseDisplay.innerHTML = `Your Next Dose: <strong>${nextDate.month} ${nextDate.date}${getOrdinalSuffix(nextDate.date)}</strong> (${nextDate.day})`;
+
+                    if (currentDisplayIndex < upcomingFilteredDates.length - 1) {
+                        nextDoseBtn.innerHTML = '<i class="fas fa-arrow-right"></i> Next Dose';
+                        showAllDatesBtn.style.display = 'inline-flex';
+                    } else {
+                        nextDoseBtn.style.display = 'none';
+                        showAllDatesBtn.style.display = 'none';
+                    }
+                } else {
+                    currentDoseDisplay.textContent = "No more upcoming Pushya Nakshatra doses for 2025. Please check back next year!";
+                    nextDoseBtn.style.display = 'none';
+                    showAllDatesBtn.style.display = 'none';
+                }
+            });
+
+            showAllDatesBtn.addEventListener('click', () => {
+                upcomingDatesList.innerHTML = '';
+                upcomingFilteredDates.forEach(dateInfo => {
+                    const listItem = document.createElement('li');
+                    listItem.innerHTML = `<strong>${dateInfo.month} ${dateInfo.date}${getOrdinalSuffix(dateInfo.date)}</strong> (${dateInfo.day})`;
+                    upcomingDatesList.appendChild(listItem);
+                });
+                upcomingDatesList.style.display = 'grid';
+                currentDoseDisplay.style.display = 'none';
+                nextDoseBtn.style.display = 'none';
+                showAllDatesBtn.style.display = 'none';
+            });
+            
+            initializeCalendarGame();
+
+            // --- Navigation Toggle for Mobile (Hamburger Menu) ---
+            const menuToggle = document.querySelector('.menu-toggle');
+            const verticalNavSidebar = document.getElementById('vertical-nav-sidebar');
+            const closeSidebarBtn = document.querySelector('.close-sidebar-btn');
+            const sidebarOverlay = document.querySelector('.sidebar-overlay');
+            const body = document.body;
+
+            function openSidebar() {
+                verticalNavSidebar.classList.add('active');
+                sidebarOverlay.classList.add('active');
+                body.classList.add('sidebar-open');
+            }
+
+            function closeSidebar() {
+                verticalNavSidebar.classList.remove('active');
+                sidebarOverlay.classList.remove('active');
+                body.classList.remove('sidebar-open');
+            }
+
+            menuToggle.addEventListener('click', openSidebar);
+            closeSidebarBtn.addEventListener('click', closeSidebar);
+            sidebarOverlay.addEventListener('click', closeSidebar);
+
+            document.querySelectorAll('#vertical-nav-sidebar a, #vertical-nav-sidebar button').forEach(link => {
+                link.addEventListener('click', () => {
+                    if (link.tagName === 'A' || link.classList.contains('contact-cta-nav')) {
+                        closeSidebar();
+                    }
+                });
+            });
+
+            // --- Modal Logic ---
+            const antravukshWhatsAppNumber = "919326649001";
+
+            function setupModal(modalId, openTriggers) {
+                const modal = document.getElementById(modalId);
+                if (!modal) return;
+                const closeBtn = modal.querySelector('.modal-close-btn');
+                
+                const openModal = () => modal.classList.add('visible');
+                const closeModal = () => modal.classList.remove('visible');
+
+                if (openTriggers) {
+                    document.querySelectorAll(openTriggers).forEach(btn => btn.addEventListener('click', openModal));
+                }
+                closeBtn.addEventListener('click', closeModal);
+                modal.addEventListener('click', (e) => {
+                    if (e.target === modal) closeModal();
+                });
+                return { openModal, closeModal };
+            }
+
+            const { closeModal: closeContactModal } = setupModal('contact-modal');
+            const { openModal: openAppointmentModal, closeModal: closeAppointmentModal } = setupModal('book-appointment-modal');
+            const { openModal: openAboutUsModal } = setupModal('about-us-modal', '#open-about-us-modal');
+            
+            document.querySelectorAll('.contact-cta-hero, #fixed-float-btn').forEach(btn => {
+                btn.addEventListener('click', openAppointmentModal);
+            });
+
+            document.getElementById('general-contact-form')?.addEventListener('submit', (e) => {
+                e.preventDefault();
+                const name = document.getElementById('contact-name').value;
+                const email = document.getElementById('contact-email').value;
+                const message = document.getElementById('contact-message').value;
+                const whatsappMessage = `Name: ${name}\nEmail: ${email}\n\nMessage: ${message}`;
+                const whatsappUrl = `https://wa.me/${antravukshWhatsAppNumber}?text=${encodeURIComponent(whatsappMessage)}`;
+                window.open(whatsappUrl, '_blank');
+                closeContactModal();
+            });
+
+            document.getElementById('appointment-form')?.addEventListener('submit', (e) => {
+                e.preventDefault();
+                const parentName = document.getElementById('appointment-parent-name').value;
+                const childName = document.getElementById('appointment-child-name').value;
+                const childAge = document.getElementById('appointment-child-age').value;
+                const whatsappMessage = `Suvarnaprashan Dose Appointment Request:\nParent's Name: ${parentName}\nChild's Name: ${childName}\nChild's Age: ${childAge} years`;
+                const whatsappUrl = `https://wa.me/${antravukshWhatsAppNumber}?text=${encodeURIComponent(whatsappMessage)}`;
+                window.open(whatsappUrl, '_blank');
+                closeAppointmentModal();
+            });
+
+            // --- FAQ Toggle Logic ---
+            const suvarnaprashanFAQBtn = document.querySelector('.contact-cta-suvarnaprashan');
+            const suvarnaprashanFAQContainer = document.getElementById('suvarnaprashan-faq-container');
+
+            suvarnaprashanFAQBtn.addEventListener('click', (e) => {
+                e.preventDefault();
+                suvarnaprashanFAQContainer.classList.toggle('visible');
+                if (suvarnaprashanFAQContainer.classList.contains('visible')) {
+                    suvarnaprashanFAQContainer.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                }
+            });
+        });
+    </script>
+</body>
+</html>
