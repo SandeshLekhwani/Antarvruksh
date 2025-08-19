@@ -843,6 +843,23 @@
             }
         }
     </style>
+
+<script>
+!function(f,b,e,v,n,t,s)
+{if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+n.callMethod.apply(n,arguments):n.queue.push(arguments)};
+if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
+n.queue=[];t=b.createElement(e);t.async=!0;
+t.src=v;s=b.getElementsByTagName(e)[0];
+s.parentNode.insertBefore(t,s)}(window, document,'script',
+'https://connect.facebook.net/en_US/fbevents.js');
+fbq('init', '695552066869441');
+fbq('track', 'PageView');
+</script>
+<noscript><img height="1" width="1" style="display:none"
+src="https://www.facebook.com/tr?id=695552066869441&ev=PageView&noscript=1"
+/></noscript>
+<!-- End Meta Pixel Code -->
 </head>
 <body>
     <!-- Animated Background -->
@@ -858,15 +875,15 @@
             <h3>Order Suvarnaprashan</h3>
             <p>Please select a package to continue.</p>
             <div class="order-options">
-                <div class="order-option" data-message="I would like to order: Pack of 1 - ₹500">
+                <div class="order-option" data-pack='{"content_name": "Pack of 1", "value": 500.00, "currency": "INR"}' data-message="I would like to order: Pack of 1 - ₹500">
                     <div><strong>Pack of 1</strong></div>
                     <div class="price">₹500</div>
                 </div>
-                <div class="order-option" data-message="I would like to order: Pack of 2 - ₹900">
+                <div class="order-option" data-pack='{"content_name": "Pack of 2", "value": 900.00, "currency": "INR"}' data-message="I would like to order: Pack of 2 - ₹900">
                     <div><strong>Pack of 2</strong></div>
                     <div class="price">₹900</div>
                 </div>
-                <div class="order-option" data-message="I would like to order: Monthly Subscription (Min 6 months) - ₹2100">
+                <div class="order-option" data-pack='{"content_name": "Monthly subscription", "value": 2100.00, "currency": "INR"}' data-message="I would like to order: Monthly Subscription (Min 6 months) - ₹2100">
                     <div><strong>Monthly Subscription</strong></div>
                     <div class="price">₹2100 <span class="details">(₹350 per month)</span></div>
                     <div class="details">Minimum 6 months</div>
@@ -948,7 +965,7 @@
                 <p>Discover personalized healing and rejuvenation rooted in the timeless principles of Ayurveda. Nurture your mind, body, and spirit for a balanced life.</p>
                 <div class="hero-actions">
                     <a href="#suvarnaprashan-calendar-dates" class="btn btn-secondary" ><i class="fas fa-calendar-alt"></i> Suvarnaprashan Calendar</a>
-                    <button class="btn order-modal-trigger"><i class="fas fa-shopping-cart"></i> Order Now</button>
+                    <button class="btn order-modal-trigger" onclick="fbq('track', 'InitiateCheckout');><i class="fas fa-shopping-cart"></i> Order Now</button>
                 </div>
             </div>
         </section>
@@ -1097,7 +1114,7 @@
     </footer>
 
     <!-- Fixed Floating Button -->
-    <button id="fixed-float-btn" class="fixed-float-btn order-modal-trigger">
+    <button id="fixed-float-btn" class="fixed-float-btn order-modal-trigger" onclick="fbq('track', 'InitiateCheckout');>
         <i class="fas fa-shopping-cart"></i>
         <span>Order Now</span>
     </button>
@@ -1327,6 +1344,32 @@
                 }
             }, { passive: true });
         });
+
+        let selectedPackData = null;
+
+    // Listen for clicks on the pack options
+    document.querySelectorAll('.order-option').forEach(option => {
+        option.addEventListener('click', function() {
+            // Get the data from the selected pack
+            selectedPackData = JSON.parse(this.getAttribute('data-pack'));
+
+            // Track a 'ViewContent' event with the pack details
+            fbq('track', 'ViewContent', selectedPackData);
+        });
+    });
+
+    // Listen for clicks on the final "Confirm Order" button
+    document.getElementById('modal-order-btn').addEventListener('click', function() {
+        if (selectedPackData) {
+            // Track the 'Contact' event with the selected pack data
+            fbq('track', 'Contact', selectedPackData);
+        } else {
+            // Fallback if the user somehow clicks without selecting a pack
+            fbq('track', 'Contact');
+        }
+    });
     </script>
+
+
 </body>
 </html>
