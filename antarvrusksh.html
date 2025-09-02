@@ -7,23 +7,21 @@
   window.dataLayer = window.dataLayer || [];
   function gtag(){dataLayer.push(arguments);}
   gtag('js', new Date());
-
   gtag('config', 'G-5WB9KZQGDZ');
 </script>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Antarvruksh — Heal Naturally, Live Holistically</title>
     <link rel="icon" href="https://sandeshlekhwani.github.io/Antarvruksh//logo.png" type="image/png">
-    <!-- Google Fonts: Montserrat for general text, and a more traditional serif for headings (optional) -->
+    <!-- Google Fonts -->
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;600;700&family=Playfair+Display:wght@400;700&display=swap" rel="stylesheet">
-    <!-- Font Awesome for Icons -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <!-- Font Awesome (deferred) -->
+    <link rel="preload" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+    <noscript><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css"></noscript>
 
     <!-- Embedded CSS -->
     <style>
-        /* Define color variables for easy theming */
         :root {
-            /* New dark green/cyan theme */
             --color-bg-main: #122223;
             --color-accent-cyan: #00F0B5;
             --color-accent-cyan-darker: #00A88F;
@@ -32,867 +30,205 @@
             --color-glass-bg: rgba(0, 240, 181, 0.05);
             --color-glass-border: rgba(0, 240, 181, 0.1);
         }
-
-        /* Basic Reset */
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-
-        html {
-            scroll-behavior: smooth;
-        }
-
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        html { scroll-behavior: smooth; }
         body {
             font-family: 'Montserrat', sans-serif;
             background-color: var(--color-bg-main);
             color: var(--color-text-on-dark);
-            line-height: 1.6;
-            overflow-x: hidden; /* Prevent horizontal scroll */
+            line-height: 1.6; overflow-x: hidden;
         }
-        body.sidebar-open {
-            overflow: hidden; /* Prevent scrolling when sidebar is open */
+        body.sidebar-open { overflow: hidden; }
+        a { color: inherit; text-decoration: none; }
+
+        .background-container { position: fixed; inset: 0; z-index: -1; overflow: hidden; background-color: var(--color-bg-main);
+            background-image: radial-gradient(circle at 25% 25%, rgba(0, 240, 181, 0.1) 0%, transparent 30%), radial-gradient(circle at 75% 75%, rgba(0, 240, 181, 0.08) 0%, transparent 30%); }
+        #star-field { position: absolute; inset: 0; }
+        .star { position: absolute; border-radius: 50%; background: rgba(0, 240, 181, 0.5); box-shadow: 0 0 8px rgba(0, 240, 181, 0.4); animation: float-star 20s infinite linear; will-change: opacity, transform; }
+        @keyframes float-star { 0%{transform: translateY(0) scale(0.8); opacity:0;} 10%,90%{opacity:0.7;} 100%{transform: translateY(-110vh) scale(1.2); opacity:0;} }
+
+        .main-container { width: 100%; max-width: 1200px; margin: auto; padding: 0 20px; position: relative; z-index: 2; }
+        .glass-card { position: relative; overflow: hidden; border-radius: 1.5rem; background: var(--color-glass-bg); border: 1px solid var(--color-glass-border);
+            backdrop-filter: blur(15px); -webkit-backdrop-filter: blur(15px); box-shadow: 0 8px 32px rgba(0,0,0,0.2); padding: 2.5rem; color: var(--color-text-on-dark); }
+
+        .main-header { position: sticky; top: 1rem; z-index: 50; width: auto; max-width: 900px; margin: 1rem auto; border-radius: 9999px; background: rgba(18, 34, 35, 0.5);
+            backdrop-filter: blur(20px); -webkit-backdrop-filter: blur(20px); box-shadow: 0 8px 30px rgba(0,0,0,0.2); padding: 0.5rem 2rem; display:flex; justify-content:space-between; align-items:center; transition: all .3s; border: 1px solid var(--color-glass-border);}
+        .main-header:hover { box-shadow: 0 10px 40px rgba(0,0,0,0.3); transform: translateY(-2px); }
+        .header-nav { display: flex; justify-content: space-between; align-items: center; width: 100%; }
+        .header-logo { display:flex; align-items:center; gap:1rem; font-family:'Playfair Display', serif; font-size:1.8rem; font-weight:700; color:var(--color-text-on-dark); }
+        .header-logo .logo-container { width: 50px; height: 50px; border-radius: 50%; background: white; display:flex; align-items:center; justify-content:center; padding:2px;
+            box-shadow: inset 2px 2px 5px rgba(0,0,0,0.2), inset -2px -2px 5px rgba(255,255,255,0.7); }
+        .header-logo img { height:100%; width:100%; object-fit:contain; filter:none; }
+        .menu-toggle { display:flex; flex-direction:column; cursor:pointer; gap:6px; margin-left:auto; }
+        .menu-toggle .bar { width:25px; height:3px; background-color:var(--color-text-on-dark); border-radius:2px; transition:all .3s; }
+
+        #vertical-nav-sidebar { position: fixed; top:0; right:-300px; width:280px; height:100%; background: rgba(18,34,35,0.8); backdrop-filter: blur(20px); -webkit-backdrop-filter: blur(20px);
+            box-shadow:-5px 0 25px rgba(0,0,0,0.3); z-index:1001; transition:right .4s cubic-bezier(0.7,0,0.3,1); display:flex; flex-direction:column; padding:2rem 1.5rem; padding-top:5rem; align-items:flex-start; border-left:1px solid var(--color-glass-border);}
+        #vertical-nav-sidebar.active { right:0; }
+        #vertical-nav-sidebar .close-sidebar-btn { position:absolute; top:1rem; right:1.5rem; background:none; border:none; color:var(--color-text-on-dark); font-size:2.5rem; cursor:pointer; line-height:1; }
+        .nav-links-vertical { list-style:none; padding:0; width:100%; margin-top:2rem; }
+        .nav-links-vertical li { margin-bottom:1rem; }
+        .nav-links-vertical a, .nav-links-vertical button { display:flex; align-items:center; gap:1rem; padding:.8rem 1rem; border-radius:.75rem; font-weight:600; color:var(--color-text-on-dark);
+            transition:all .3s; background: var(--color-glass-bg); border:1px solid var(--color-glass-border); backdrop-filter: blur(5px); -webkit-backdrop-filter: blur(5px); cursor:pointer; width:100%; text-align:left; font-size:1.1rem; }
+        .nav-links-vertical a i, .nav-links-vertical button i { font-size:1.3rem; color:var(--color-accent-cyan); }
+        .nav-links-vertical a:hover, .nav-links-vertical button:hover { background: rgba(0,240,181,0.1); color: var(--color-accent-cyan); transform: translateX(5px) scale(1.02); border-color: rgba(0,240,181,0.5); box-shadow:0 0 15px rgba(0,240,181,0.2); }
+        .sidebar-overlay { position:fixed; inset:0; background: rgba(0,0,0,0.6); backdrop-filter: blur(5px); z-index:1000; display:none; opacity:0; transition: opacity .4s; }
+        .sidebar-overlay.active { display:block; opacity:1; }
+
+        section { padding: 3rem 0; }
+        .hero { padding-top:6rem; padding-bottom:3rem; text-align:center; display:flex; align-items:center; min-height:80vh; }
+        .hero-content { max-width:800px; margin:0 auto; }
+        .hero-logo-container { width:120px; height:120px; margin:0 auto 2rem; border-radius:50%; background:white; display:flex; align-items:center; justify-content:center; padding:10px;
+            box-shadow: inset 4px 4px 8px rgba(0,0,0,0.2), inset -4px -4px 8px rgba(255,255,255,0.7); }
+        .hero-logo-container img { width:100%; height:100%; object-fit:contain; }
+        .hero h1 { font-family:'Playfair Display', serif; font-size:clamp(3.5rem,6vw,5.5rem); font-weight:700; line-height:1.1; margin-bottom:1.5rem; color:var(--color-text-on-dark); }
+        .hero h1 .inner-strength-text { font-family:'Montserrat', sans-serif; font-size:clamp(2.5rem,4.5vw,4rem); display:block; margin-top:.5rem; color:var(--color-text-on-dark); text-shadow:none; }
+        .hero p { font-size:clamp(1.1rem,1.8vw,1.3rem); max-width:700px; margin:1.5rem auto .75rem; color: var(--color-text-darker); }
+        .hero-actions { display:flex; justify-content:center; gap:1rem; flex-wrap:wrap; margin-top:1.25rem; }
+
+        .btn { padding:.9rem 1.8rem; border-radius:9999px; border:1px solid var(--color-accent-cyan); background: var(--color-accent-cyan); color: var(--color-bg-main); font-weight:600; font-size:1rem; cursor:pointer;
+            transition: all .3s; box-shadow:0 4px 15px rgba(0,0,0,0.2); display:inline-flex; align-items:center; justify-content:center; gap:.5rem; }
+        .btn:hover { background: transparent; color: var(--color-accent-cyan); box-shadow:0 6px 20px rgba(0,240,181,0.2); transform: translateY(-2px); }
+        .btn-secondary { background: transparent; border:1px solid var(--color-accent-cyan); color: var(--color-accent-cyan); }
+        .btn-secondary:hover { background: var(--color-accent-cyan); color: var(--color-bg-main); }
+
+        .grid-layout { display:grid; gap:2.5rem; align-items:start; }
+        @media (min-width:768px){ .grid-layout.col-2{grid-template-columns:repeat(2,1fr);} .grid-layout.col-3{grid-template-columns:repeat(3,1fr);} }
+
+        #suvarnaprashan { display:grid; gap:2rem; }
+        #suvarnavrashan .glass-card { padding:2rem; }
+        .benefits-grid { display:grid; grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); gap:2rem; text-align:center; margin-top:2rem; }
+        .benefit-item { display:flex; flex-direction:column; align-items:center; gap:1rem; }
+        .benefit-item i { font-size:2.5rem; color:var(--color-accent-cyan); }
+        .benefit-item span { color:var(--color-text-darker); font-size:.9rem; }
+
+        .suvarnaprashan-calendar-container { margin-top:3rem; padding-top:2rem; border-top:1px solid var(--color-glass-border); text-align:center; }
+        .next-dose-display-card { background:var(--color-glass-bg); border:1px solid var(--color-glass-border); border-radius:1.5rem; padding:2rem; margin:1rem auto 2rem; max-width:400px; text-align:center;
+            box-shadow:0 8px 32px rgba(0,0,0,0.2); backdrop-filter: blur(15px); -webkit-backdrop-filter: blur(15px); }
+        .next-dose-display-card h4 { color:var(--color-text-darker); font-weight:400; margin-bottom:.5rem; font-size:1rem; }
+        .next-dose-display-card p { color:var(--color-text-on-dark); font-size:1.5rem; font-weight:600; line-height:1.2; }
+        .next-dose-display-card p strong { color:var(--color-accent-cyan); display:block; font-size:1.8rem; }
+
+        .suvarnaprashan-calendar-list { list-style:none; padding:0; display:grid; grid-template-columns: repeat(auto-fit, minmax(250px,1fr)); gap:1rem; text-align:left; margin-top:1.5rem; }
+        .suvarnaprashan-calendar-list li { background:var(--color-glass-bg); padding:1.2rem 1.8rem; border-radius:1rem; border:1px solid var(--color-glass-border); font-weight:500; transition: transform .2s, box-shadow .2s; }
+        .suvarnaprashan-calendar-list li:hover { transform: translateY(-3px); box-shadow:0 8px 25px rgba(0,0,0,0.2); border-color: rgba(0,240,181,0.5); }
+        .suvarnaprashan-calendar-list li strong { color:var(--color-accent-cyan); font-weight:700; display:block; margin-bottom:.4rem; font-size:1.1rem; }
+
+        .faq-button-section { text-align:center; padding:2rem 0; margin-top:0; }
+        #suvarnaprashan-faq-container { padding:0; background:transparent; text-align:left; opacity:0; max-height:0; overflow:hidden; transition: opacity .5s, max-height .7s; border-radius:1.5rem; box-shadow:none; }
+        #suvarnaprashan-faq-container.visible { opacity:1; max-height:1000px; }
+        #suvarnaprashan-faq-container .glass-card { margin-top:3rem; }
+        .faq-item { background:var(--color-glass-bg); padding:1.2rem 1.8rem; border-radius:1rem; margin-bottom:1rem; border:1px solid var(--color-glass-border); }
+        .faq-item strong { display:block; margin-bottom:.5rem; color:var(--color-accent-cyan); }
+
+        .testimonial-card { text-align:center; font-style:italic; position:relative; padding:2rem; }
+        .testimonial-card::before, .testimonial-card::after { content:"“"; font-family:serif; font-size:4rem; color:var(--color-accent-cyan); position:absolute; opacity:0.2; top:.5rem; left:1rem; line-height:1; }
+        .testimonial-card::after { content:"”"; right:1rem; left:unset; bottom:.5rem; top:unset; }
+        .testimonial-author { font-weight:600; color:var(--color-accent-cyan); margin-top:1rem; display:block; }
+
+        .blog-post { background:var(--color-glass-bg); border:1px solid var(--color-glass-border); border-radius:1rem; padding:1.5rem; box-shadow:0 4px 10px rgba(0,0,0,0.1);
+            transition: transform .2s, box-shadow .2s; text-align:left; }
+        .blog-post:hover { transform: translateY(-5px); box-shadow:0 6px 15px rgba(0,0,0,0.2); }
+        .blog-post h3 { color:var(--color-text-on-dark); font-size:1.6rem; margin-bottom:.8rem; }
+        .blog-post a { color:var(--color-accent-cyan); font-weight:600; margin-top:1rem; display:inline-block; border-bottom:1px solid transparent; }
+        .blog-post a:hover { border-bottom-color:var(--color-accent-cyan); }
+
+        .contact-info { padding:2rem; text-align:center; }
+        .contact-info h3 { color:var(--color-text-on-dark); }
+        .contact-info i { color:var(--color-accent-cyan); margin-right:.5rem; }
+
+        .main-footer { padding:3rem 0; text-align:center; color:var(--color-text-darker); font-size:.9rem; background:transparent; }
+
+        .modal-overlay { position:fixed; inset:0; background: rgba(18,34,35,0.7); backdrop-filter: blur(8px); -webkit-backdrop-filter: blur(8px); z-index:1000; display:none; align-items:center; justify-content:center; padding:1rem; opacity:0; transition: opacity .3s; }
+        .modal-overlay.visible { display:flex; opacity:1; }
+        .modal-content { max-width:550px; width:90%; position:relative; padding:2.5rem; border-radius:1.5rem; background:var(--color-bg-main); border:1px solid var(--color-glass-border); box-shadow:0 10px 40px rgba(0,0,0,0.2); color:var(--color-text-on-dark); }
+        .modal-close-btn { position:absolute; top:1rem; right:1.5rem; background:none; border:none; color:var(--color-text-on-dark); font-size:2.5rem; cursor:pointer; line-height:1; }
+        .modal-content h3 { font-size:2rem; color:var(--color-accent-cyan); margin-bottom:1rem; text-align:center; }
+        .modal-content p { color:var(--color-text-on-dark); margin-bottom:1.5rem; }
+
+        .order-options { display:flex; flex-direction:column; gap:1rem; margin-bottom:1.5rem; }
+        .order-option { padding:1rem; border:2px solid var(--color-glass-border); border-radius:.75rem; cursor:pointer; transition:all .3s; color:var(--color-text-on-dark); }
+        .order-option:hover { border-color:var(--color-accent-cyan); background:var(--color-glass-bg); }
+        .order-option.selected { border-color:var(--color-accent-cyan); background:var(--color-glass-bg); box-shadow:0 0 10px rgba(0,240,181,0.2); }
+        .order-option .price { font-weight:600; color:var(--color-accent-cyan); font-size:1.2rem; }
+        .order-option .details { font-size:.85rem; color:var(--color-text-darker); }
+        #modal-order-btn:disabled { background:#555; border-color:#555; color:#888; cursor:not-allowed; }
+
+        .fixed-float-btn { position:fixed; bottom:20px; right:20px; z-index:999; white-space:nowrap; padding:.9rem 1.8rem; border-radius:9999px; border:1px solid var(--color-accent-cyan);
+            background: var(--color-accent-cyan); color: var(--color-bg-main); font-weight:600; font-size:1rem; cursor:pointer; transition:all .3s; box-shadow:0 4px 15px rgba(0,0,0,0.2);
+            display:inline-flex; align-items:center; justify-content:center; gap:.5rem; opacity:0; transform: translateY(20px); pointer-events:none; }
+        .fixed-float-btn.visible { opacity:1; transform: translateY(0); pointer-events:auto; }
+        .fixed-float-btn:hover { background:transparent; color:var(--color-accent-cyan); box-shadow:0 6px 20px rgba(0,240,181,0.2); transform: translateY(-2px); }
+
+        @media (max-width:768px){
+            .main-header { border-radius:1.5rem; margin:1rem; max-width:calc(100% - 2rem); padding:.5rem 1.5rem; }
+            .header-nav { flex-wrap:nowrap; }
+            .menu-toggle.active .bar:nth-child(1){ transform: translateY(9px) rotate(45deg); }
+            .menu-toggle.active .bar:nth-child(2){ opacity:0; }
+            .menu-toggle.active .bar:nth-child(3){ transform: translateY(-9px) rotate(-45deg); }
+            .hero { padding-top:6rem; min-height:unset; }
+            section { padding:2rem 0; }
+            .glass-card { padding:1.5rem; }
+            .grid-layout.col-2, .grid-layout.col-3 { grid-template-columns:1fr; }
+            .contact-content { grid-template-columns:1fr; }
+            h2 { font-size:clamp(1.8rem,8vw,2.5rem); }
+            h3 { font-size:clamp(1.5rem,6vw,2rem); }
+            p { font-size:.95rem; }
+            .hero h1 { font-size:clamp(2.5rem,10vw,4rem); }
+            .hero p { font-size:clamp(1rem,4vw,1.2rem); }
+            .hero-actions { flex-direction:column; gap:1rem; }
+            .btn { width:80%; margin:0 auto; }
+            .modal-content { width:95%; }
+            .fixed-float-btn { padding:10px 15px; font-size:1rem; bottom:15px; right:15px; }
+            .fixed-float-btn i { margin-right:5px; }
         }
 
-        a {
-            color: inherit;
-            text-decoration: none;
-        }
-
-        /* Animated Background */
-        .background-container {
-            position: fixed;
-            inset: 0;
-            z-index: -1;
-            overflow: hidden;
-            background-color: var(--color-bg-main);
-            background-image: radial-gradient(circle at 25% 25%, rgba(0, 240, 181, 0.1) 0%, transparent 30%),
-                              radial-gradient(circle at 75% 75%, rgba(0, 240, 181, 0.08) 0%, transparent 30%);
-        }
-        
-        #star-field {
-            position: absolute;
-            inset: 0;
-        }
-
-        .star {
-            position: absolute;
-            border-radius: 50%;
-            background: rgba(0, 240, 181, 0.5);
-            box-shadow: 0 0 8px rgba(0, 240, 181, 0.4);
-            animation: float-star 20s infinite linear;
-            will-change: opacity, transform;
-        }
-
-        @keyframes float-star {
-            0% {
-                transform: translateY(0) scale(0.8);
-                opacity: 0;
-            }
-            10%, 90% {
-                opacity: 0.7;
-            }
-            100% {
-                transform: translateY(-110vh) scale(1.2);
-                opacity: 0;
-            }
-        }
-
-        /* Main Container for content */
-        .main-container {
-            width: 100%;
-            max-width: 1200px;
-            margin: auto;
-            padding: 0 20px;
-            position: relative;
-            z-index: 2;
-        }
-
-        /* Glass Card Component */
-        .glass-card {
-            position: relative;
-            overflow: hidden;
-            border-radius: 1.5rem;
-            background: var(--color-glass-bg); 
-            border: 1px solid var(--color-glass-border);
-            backdrop-filter: blur(15px);
-            -webkit-backdrop-filter: blur(15px);
-            box-shadow: 0 8px 32px rgba(0,0,0,0.2);
-            padding: 2.5rem;
-            color: var(--color-text-on-dark);
-        }
-        
-        /* Improved Navigation Bar */
-        .main-header {
-            position: sticky;
-            top: 1rem;
-            z-index: 50;
-            width: auto;
-            max-width: 900px;
-            margin: 1rem auto;
-            border-radius: 9999px;
-            background: rgba(18, 34, 35, 0.5);
-            backdrop-filter: blur(20px);
-            -webkit-backdrop-filter: blur(20px);
-            box-shadow: 0 8px 30px rgba(0,0,0,0.2);
-            padding: 0.5rem 2rem;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            transition: all 0.3s ease-in-out;
-            border: 1px solid var(--color-glass-border);
-        }
-        .main-header:hover {
-            box-shadow: 0 10px 40px rgba(0,0,0,0.3);
-            transform: translateY(-2px);
-        }
-
-        .header-nav {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            width: 100%;
-        }
-
-        .header-logo {
-            display: flex;
-            align-items: center;
-            gap: 1rem;
-            font-family: 'Playfair Display', serif;
-            font-size: 1.8rem;
-            font-weight: 700;
-            color: var(--color-text-on-dark);
-        }
-        .header-logo .logo-container {
-            width: 50px;
-            height: 50px;
-            border-radius: 50%;
-            background: white;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            padding: 2px;
-            box-shadow: inset 2px 2px 5px rgba(0,0,0,0.2), inset -2px -2px 5px rgba(255,255,255,0.7);
-        }
-        .header-logo img {
-            height: 100%;
-            width: 100%;
-            object-fit: contain;
-            filter: none;
-        }
-        
-        /* Hamburger Menu for Mobile */
-        .menu-toggle {
-            display: flex;
-            flex-direction: column;
-            cursor: pointer;
-            gap: 6px;
-            margin-left: auto;
-        }
-
-        .menu-toggle .bar {
-            width: 25px;
-            height: 3px;
-            background-color: var(--color-text-on-dark);
-            border-radius: 2px;
-            transition: all 0.3s ease;
-        }
-
-        /* Vertical Sidebar Navigation (Right Side) */
-        #vertical-nav-sidebar {
-            position: fixed;
-            top: 0;
-            right: -300px;
-            width: 280px;
-            height: 100%;
-            background: rgba(18, 34, 35, 0.8);
-            backdrop-filter: blur(20px);
-            -webkit-backdrop-filter: blur(20px);
-            box-shadow: -5px 0 25px rgba(0,0,0,0.3);
-            z-index: 1001;
-            transition: right 0.4s cubic-bezier(0.7, 0, 0.3, 1);
-            display: flex;
-            flex-direction: column;
-            padding: 2rem 1.5rem;
-            padding-top: 5rem;
-            align-items: flex-start;
-            border-left: 1px solid var(--color-glass-border);
-        }
-
-        #vertical-nav-sidebar.active {
-            right: 0;
-        }
-
-        #vertical-nav-sidebar .close-sidebar-btn {
-            position: absolute;
-            top: 1rem;
-            right: 1.5rem;
-            background: none;
-            border: none;
-            color: var(--color-text-on-dark);
-            font-size: 2.5rem;
-            cursor: pointer;
-            line-height: 1;
-        }
-        
-        .nav-links-vertical {
-            list-style: none;
-            padding: 0;
-            width: 100%;
-            margin-top: 2rem;
-        }
-
-        .nav-links-vertical li {
-            margin-bottom: 1rem;
-        }
-
-        .nav-links-vertical a, .nav-links-vertical button {
-            display: flex;
-            align-items: center;
-            gap: 1rem;
-            padding: 0.8rem 1rem;
-            border-radius: 0.75rem;
-            font-weight: 600;
-            color: var(--color-text-on-dark);
-            transition: all 0.3s ease;
-            background: var(--color-glass-bg);
-            border: 1px solid var(--color-glass-border);
-            backdrop-filter: blur(5px);
-            -webkit-backdrop-filter: blur(5px);
-            cursor: pointer;
-            width: 100%;
-            text-align: left;
-            font-size: 1.1rem;
-        }
-
-        .nav-links-vertical a i, .nav-links-vertical button i {
-            font-size: 1.3rem;
-            color: var(--color-accent-cyan);
-        }
-
-        .nav-links-vertical a:hover, .nav-links-vertical button:hover {
-            background: rgba(0, 240, 181, 0.1);
-            color: var(--color-accent-cyan);
-            transform: translateX(5px) scale(1.02);
-            border-color: rgba(0, 240, 181, 0.5);
-            box-shadow: 0 0 15px rgba(0, 240, 181, 0.2);
-        }
-
-        /* Overlay when sidebar is open */
-        .sidebar-overlay {
-            position: fixed;
-            inset: 0;
-            background: rgba(0,0,0,0.6);
-            backdrop-filter: blur(5px);
-            z-index: 1000;
-            display: none;
-            opacity: 0;
-            transition: opacity 0.4s ease;
-        }
-        .sidebar-overlay.active {
-            display: block;
-            opacity: 1;
-        }
-
-        /* General Sections */
-        section {
-            padding: 3rem 0;
-        }
-        .hero {
-            padding-top: 6rem;
-            padding-bottom: 3rem;
-        }
-
-        h2 {
-            font-family: 'Playfair Display', serif;
-            font-size: clamp(2.2rem, 4vw, 3.5rem);
-            font-weight: 700;
-            color: var(--color-accent-cyan);
-            text-align: center;
-            margin-bottom: 2.5rem;
-            position: relative;
-        }
-
-        h2::after {
-            content: '';
-            display: block;
-            width: 80px;
-            height: 2px;
-            background: linear-gradient(to right, transparent, var(--color-accent-cyan), transparent);
-            margin: 1rem auto 0;
-            border-radius: 5px;
-        }
-        
-        h3 {
-            font-family: 'Playfair Display', serif;
-            font-size: clamp(1.8rem, 3vw, 2.5rem);
-            font-weight: 700;
-            color: var(--color-text-on-dark);
-            margin-bottom: 1rem;
-        }
-
-        p {
-            font-size: 1.05rem;
-            margin-bottom: 1rem;
-            color: var(--color-text-darker);
-        }
-
-        /* Hero Section */
-        .hero {
-            text-align: center;
-            display: flex;
-            align-items: center;
-            min-height: 80vh;
-        }
-
-        .hero-content {
-            max-width: 800px;
-            margin: 0 auto;
-        }
-        
-        .hero-logo-container {
-            width: 120px;
-            height: 120px;
-            margin: 0 auto 2rem;
-            border-radius: 50%;
-            background: white;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            padding: 10px;
-            box-shadow: inset 4px 4px 8px rgba(0,0,0,0.2), inset -4px -4px 8px rgba(255,255,255,0.7);
-        }
-        .hero-logo-container img {
-            width: 100%;
-            height: 100%;
-            object-fit: contain;
-        }
-
-        .hero h1 {
-            font-family: 'Playfair Display', serif;
-            font-size: clamp(3.5rem, 6vw, 5.5rem);
-            font-weight: 700;
-            line-height: 1.1;
-            margin-bottom: 1.5rem;
-            color: var(--color-text-on-dark);
-        }
-        
-        .hero h1 .inner-strength-text {
-            font-family: 'Montserrat', sans-serif;
-            font-size: clamp(2.5rem, 4.5vw, 4rem);
-            display: block;
-            margin-top: 0.5rem;
-            color: var(--color-text-on-dark);
-            text-shadow: none;
-        }
-
-        .hero p {
-            font-size: clamp(1.1rem, 1.8vw, 1.3rem);
-            max-width: 700px;
-            margin: 1.5rem auto 2.5rem;
-        }
-        .hero-actions {
-            display: flex;
-            justify-content: center;
-            gap: 1.5rem;
-            flex-wrap: wrap;
-            margin-top: 2rem;
-        }
-
-        /* Generic Button */
-        .btn {
-            padding: 0.9rem 1.8rem;
-            border-radius: 9999px;
-            border: 1px solid var(--color-accent-cyan);
-            background: var(--color-accent-cyan);
-            color: var(--color-bg-main);
-            font-weight: 600;
-            font-size: 1rem;
-            cursor: pointer;
-            transition: all 0.3s ease;
-            box-shadow: 0 4px 15px rgba(0,0,0,0.2);
-            display: inline-flex;
-            align-items: center;
-            justify-content: center;
-            gap: 0.5rem;
-        }
-        .btn:hover {
-            background: transparent;
-            color: var(--color-accent-cyan);
-            box-shadow: 0 6px 20px rgba(0, 240, 181, 0.2);
-            transform: translateY(-2px);
-        }
-        .btn-secondary {
-            background: transparent;
-            border: 1px solid var(--color-accent-cyan);
-            color: var(--color-accent-cyan);
-        }
-        .btn-secondary:hover {
-            background: var(--color-accent-cyan);
-            color: var(--color-bg-main);
-        }
-
-        /* Grid Layouts */
-        .grid-layout {
-            display: grid;
-            gap: 2.5rem;
-            align-items: start;
-        }
-        @media (min-width: 768px) {
-            .grid-layout.col-2 { grid-template-columns: repeat(2, 1fr); }
-            .grid-layout.col-3 { grid-template-columns: repeat(3, 1fr); }
-        }
-
-        /* Suvarnaprashan Section Redesign */
-        #suvarnaprashan {
-            display: grid;
-            gap: 2rem;
-        }
-        #suvarnaprashan .glass-card {
-            padding: 2rem;
-        }
-        .benefits-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
-            gap: 2rem;
-            text-align: center;
-            margin-top: 2rem;
-        }
-        .benefit-item {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            gap: 1rem;
-        }
-        .benefit-item i {
-            font-size: 2.5rem;
-            color: var(--color-accent-cyan);
-        }
-        .benefit-item span {
-            color: var(--color-text-darker);
-            font-size: 0.9rem;
-        }
-        
-        /* Suvarnaprashan Calendar Specific Styling */
-        .suvarnaprashan-calendar-container {
-            margin-top: 3rem;
-            padding-top: 2rem;
-            border-top: 1px solid var(--color-glass-border);
-            text-align: center;
-        }
-        
-        .next-dose-display-card {
-            background: var(--color-glass-bg);
-            border: 1px solid var(--color-glass-border);
-            border-radius: 1.5rem;
-            padding: 2rem;
-            margin: 1rem auto 2rem;
-            max-width: 400px;
-            text-align: center;
-            box-shadow: 0 8px 32px rgba(0,0,0,0.2);
-            backdrop-filter: blur(15px);
-            -webkit-backdrop-filter: blur(15px);
-        }
-        .next-dose-display-card h4 {
-            color: var(--color-text-darker);
-            font-weight: 400;
-            margin-bottom: 0.5rem;
-            font-size: 1rem;
-        }
-        .next-dose-display-card p {
-            color: var(--color-text-on-dark);
-            font-size: 1.5rem;
-            font-weight: 600;
-            line-height: 1.2;
-        }
-        .next-dose-display-card p strong {
-            color: var(--color-accent-cyan);
-            display: block;
-            font-size: 1.8rem;
-        }
-
-        .suvarnaprashan-calendar-list {
-            list-style: none;
-            padding: 0;
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 1rem;
-            text-align: left;
-            margin-top: 1.5rem;
-        }
-        .suvarnaprashan-calendar-list li {
-            background: var(--color-glass-bg);
-            padding: 1.2rem 1.8rem;
-            border-radius: 1rem;
-            border: 1px solid var(--color-glass-border);
-            font-weight: 500;
-            transition: transform 0.2s ease, box-shadow 0.2s ease;
-        }
-        .suvarnaprashan-calendar-list li:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 8px 25px rgba(0,0,0, 0.2);
-            border-color: rgba(0, 240, 181, 0.5);
-        }
-        .suvarnaprashan-calendar-list li strong {
-            color: var(--color-accent-cyan);
-            font-weight: 700;
-            display: block;
-            margin-bottom: 0.4rem;
-            font-size: 1.1rem;
-        }
-        
-        /* New section for the FAQ button itself, to place it between sections */
-        .faq-button-section {
-            text-align: center;
-            padding: 2rem 0;
-            margin-top: 0;
-        }
-
-        /* Suvarnaprashan FAQ Section */
-        #suvarnaprashan-faq-container {
-            padding: 0;
-            background: transparent;
-            text-align: left;
-            opacity: 0;
-            max-height: 0;
-            overflow: hidden;
-            transition: opacity 0.5s ease-out, max-height 0.7s ease-out;
-            border-radius: 1.5rem;
-            box-shadow: none;
-        }
-        #suvarnaprashan-faq-container.visible {
-            opacity: 1;
-            max-height: 1000px; /* Increased max height */
-        }
-        #suvarnaprashan-faq-container .glass-card {
-            margin-top: 3rem;
-        }
-        
-        .faq-item {
-            background: var(--color-glass-bg);
-            padding: 1.2rem 1.8rem;
-            border-radius: 1rem;
-            margin-bottom: 1rem;
-            border: 1px solid var(--color-glass-border);
-        }
-        .faq-item strong {
-            display: block;
-            margin-bottom: 0.5rem;
-            color: var(--color-accent-cyan);
-        }
-
-        /* Testimonials */
-        .testimonial-card {
-            text-align: center;
-            font-style: italic;
-            position: relative;
-            padding: 2rem;
-        }
-        
-        .testimonial-card::before, .testimonial-card::after {
-            content: "“";
-            font-family: serif;
-            font-size: 4rem;
-            color: var(--color-accent-cyan);
-            position: absolute;
-            opacity: 0.2;
-            top: 0.5rem;
-            left: 1rem;
-            line-height: 1;
-        }
-        .testimonial-card::after {
-            content: "”";
-            right: 1rem;
-            left: unset;
-            bottom: 0.5rem;
-            top: unset;
-        }
-        .testimonial-author {
-            font-weight: 600;
-            color: var(--color-accent-cyan);
-            margin-top: 1rem;
-            display: block;
-        }
-
-        /* Blog & Contact Sections */
-        .blog-post {
-            background: var(--color-glass-bg);
-            border: 1px solid var(--color-glass-border);
-            border-radius: 1rem;
-            padding: 1.5rem;
-            box-shadow: 0 4px 10px rgba(0,0,0,0.1);
-            transition: transform 0.2s ease, box-shadow 0.2s ease;
-            text-align: left;
-        }
-        .blog-post:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 6px 15px rgba(0,0,0, 0.2);
-        }
-        .blog-post h3 {
-            color: var(--color-text-on-dark);
-            font-size: 1.6rem;
-            margin-bottom: 0.8rem;
-        }
-        .blog-post a {
-            color: var(--color-accent-cyan);
-            font-weight: 600;
-            margin-top: 1rem;
-            display: inline-block;
-            text-decoration: none;
-            border-bottom: 1px solid transparent;
-        }
-        .blog-post a:hover {
-            border-bottom-color: var(--color-accent-cyan);
-        }
-
-        .contact-info {
-            padding: 2rem;
-            text-align: center;
-        }
-        .contact-info h3 { color: var(--color-text-on-dark); }
-        .contact-info i {
-            color: var(--color-accent-cyan);
-            margin-right: 0.5rem;
-        }
-
-        /* Footer */
-        .main-footer {
-            padding: 3rem 0;
-            text-align: center;
-            color: var(--color-text-darker);
-            font-size: 0.9rem;
-            background: transparent;
-        }
-
-        /* Modal Styles */
-        .modal-overlay {
-            position: fixed;
-            inset: 0;
-            background: rgba(18, 34, 35, 0.7);
-            backdrop-filter: blur(8px);
-            -webkit-backdrop-filter: blur(8px);
-            z-index: 1000;
-            display: none;
-            align-items: center;
-            justify-content: center;
-            padding: 1rem;
-            opacity: 0;
-            transition: opacity 0.3s ease;
-        }
-        .modal-overlay.visible {
-            display: flex;
-            opacity: 1;
-        }
-        .modal-content {
-            max-width: 550px;
-            width: 90%;
-            position: relative;
-            padding: 2.5rem;
-            border-radius: 1.5rem;
-            background: var(--color-bg-main);
-            border: 1px solid var(--color-glass-border);
-            box-shadow: 0 10px 40px rgba(0,0,0,0.2);
-            color: var(--color-text-on-dark);
-        }
-        .modal-close-btn {
-            position: absolute;
-            top: 1rem;
-            right: 1.5rem;
-            background: none;
-            border: none;
-            color: var(--color-text-on-dark);
-            font-size: 2.5rem;
-            cursor: pointer;
-            line-height: 1;
-        }
-        .modal-content h3 {
-            font-size: 2rem;
-            color: var(--color-accent-cyan);
-            margin-bottom: 1rem;
-            text-align: center;
-        }
-        .modal-content p {
-            color: var(--color-text-on-dark);
-            margin-bottom: 1.5rem;
-        }
-        
-        /* Order Modal Options */
-        .order-options {
-            display: flex;
-            flex-direction: column;
-            gap: 1rem;
-            margin-bottom: 1.5rem;
-        }
-        .order-option {
-            padding: 1rem;
-            border: 2px solid var(--color-glass-border);
-            border-radius: 0.75rem;
-            cursor: pointer;
-            transition: all 0.3s ease;
-            color: var(--color-text-on-dark);
-        }
-        .order-option:hover {
-            border-color: var(--color-accent-cyan);
-            background: var(--color-glass-bg);
-        }
-        .order-option.selected {
-            border-color: var(--color-accent-cyan);
-            background: var(--color-glass-bg);
-            box-shadow: 0 0 10px rgba(0, 240, 181, 0.2);
-        }
-        .order-option .price {
-            font-weight: 600;
-            color: var(--color-accent-cyan);
-            font-size: 1.2rem;
-        }
-        .order-option .details {
-            font-size: 0.85rem;
-            color: var(--color-text-darker);
-        }
-        
-        #modal-order-btn:disabled {
-            background: #555;
-            border-color: #555;
-            color: #888;
-            cursor: not-allowed;
-        }
-
-        /* Floating Fixed Button */
-        .fixed-float-btn {
-            position: fixed;
-            bottom: 20px;
-            right: 20px;
-            z-index: 999;
-            white-space: nowrap;
-            /* Match .btn styles */
-            padding: 0.9rem 1.8rem;
-            border-radius: 9999px;
-            border: 1px solid var(--color-accent-cyan);
-            background: var(--color-accent-cyan);
-            color: var(--color-bg-main);
-            font-weight: 600;
-            font-size: 1rem;
-            cursor: pointer;
-            transition: all 0.3s ease;
-            box-shadow: 0 4px 15px rgba(0,0,0,0.2);
-            display: inline-flex;
-            align-items: center;
-            justify-content: center;
-            gap: 0.5rem;
-            /* Initial hidden state */
-            opacity: 0;
-            transform: translateY(20px);
-            pointer-events: none;
-        }
-        .fixed-float-btn.visible {
-            opacity: 1;
-            transform: translateY(0);
-            pointer-events: auto;
-        }
-        .fixed-float-btn:hover {
-            background: transparent;
-            color: var(--color-accent-cyan);
-            box-shadow: 0 6px 20px rgba(0, 240, 181, 0.2);
-            transform: translateY(-2px);
-        }
-
-        /* Responsive Adjustments */
-        @media (max-width: 768px) {
-            .main-header {
-                border-radius: 1.5rem;
-                margin: 1rem;
-                max-width: calc(100% - 2rem);
-                padding: 0.5rem 1.5rem;
-            }
-            .header-nav {
-                flex-wrap: nowrap;
-            }
-
-            .menu-toggle.active .bar:nth-child(1) { transform: translateY(9px) rotate(45deg); }
-            .menu-toggle.active .bar:nth-child(2) { opacity: 0; }
-            .menu-toggle.active .bar:nth-child(3) { transform: translateY(-9px) rotate(-45deg); }
-
-            .hero {
-                padding-top: 6rem;
-                min-height: unset;
-            }
-
-            section {
-                padding: 2rem 0;
-            }
-
-            .glass-card { padding: 1.5rem; }
-
-            .grid-layout.col-2, .grid-layout.col-3 {
-                grid-template-columns: 1fr;
-            }
-            .contact-content {
-                grid-template-columns: 1fr;
-            }
-
-            h2 { font-size: clamp(1.8rem, 8vw, 2.5rem); }
-            h3 { font-size: clamp(1.5rem, 6vw, 2rem); }
-            p { font-size: 0.95rem; }
-
-            .hero h1 { font-size: clamp(2.5rem, 10vw, 4rem); }
-            .hero p { font-size: clamp(1rem, 4vw, 1.2rem); }
-            .hero-actions { flex-direction: column; gap: 1rem; }
-            .btn { width: 80%; margin: 0 auto; }
-            .modal-content { width: 95%; }
-
-            .fixed-float-btn {
-                padding: 10px 15px;
-                font-size: 1rem;
-                bottom: 15px;
-                right: 15px;
-            }
-            .fixed-float-btn i {
-                margin-right: 5px;
-            }
+        @media (prefers-reduced-motion: reduce){
+            * { animation: none !important; transition: none !important; }
         }
     </style>
 
 <script>
-!function(f,b,e,v,n,t,s)
-{if(f.fbq)return;n=f.fbq=function(){n.callMethod?
-n.callMethod.apply(n,arguments):n.queue.push(arguments)};
-if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
-n.queue=[];t=b.createElement(e);t.async=!0;
-t.src=v;s=b.getElementsByTagName(e)[0];
-s.parentNode.insertBefore(t,s)}(window, document,'script',
-'https://connect.facebook.net/en_US/fbevents.js');
-fbq('init', '695552066869441');
-fbq('track', 'PageView');
+!function(f,b,e,v,n,t,s){if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+n.callMethod.apply(n,arguments):n.queue.push(arguments)};if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
+n.queue=[];t=b.createElement(e);t.async=!0;t.src=v;s=b.getElementsByTagName(e)[0];s.parentNode.insertBefore(t,s)}(window, document,'script','https://connect.facebook.net/en_US/fbevents.js');
+fbq('init', '695552066869441'); fbq('track', 'PageView');
 </script>
-<noscript><img height="1" width="1" style="display:none"
-src="https://www.facebook.com/tr?id=695552066869441&ev=PageView&noscript=1"
-/></noscript>
-<!-- End Meta Pixel Code -->
+<noscript><img height="1" width="1" style="display:none" src="https://www.facebook.com/tr?id=695552066869441&ev=PageView&noscript=1"/></noscript>
+
+<script type="application/ld+json">
+{
+ "@context":"https://schema.org",
+ "@type":"FAQPage",
+ "mainEntity":[
+  {"@type":"Question","name":"What is the ideal age for Suvarnaprashan?","acceptedAnswer":{"@type":"Answer","text":"From birth up to 16 years of age."}},
+  {"@type":"Question","name":"How often should it be given?","acceptedAnswer":{"@type":"Answer","text":"Daily or at least monthly on Pushya Nakshatra days."}},
+  {"@type":"Question","name":"Are there any side effects?","acceptedAnswer":{"@type":"Answer","text":"When prepared and administered correctly, there are no known side effects."}}
+ ]
+}
+</script>
 </head>
 <body>
-    <!-- Animated Background -->
     <div class="background-container">
         <div class="background-gradient"></div>
         <div id="star-field"></div>
     </div>
 
-    <!-- Order Modal -->
     <div id="order-modal" class="modal-overlay">
         <div class="modal-content">
             <button class="modal-close-btn">&times;</button>
             <h3>Order Suvarnaprashan</h3>
-            <p>Please select a package to continue.</p>
+            <p>Please select a package to continue. We’ll open WhatsApp to confirm your child’s dose & complete payment.</p>
             <div class="order-options">
-                <div class="order-option" data-pack='{"content_name": "Pack of 1", "value": 500.00, "currency": "INR"}' data-message="I would like to order: Pack of 1 - ₹500">
+                <div class="order-option" data-pack='{"content_name":"Pack of 1","value":500.00,"currency":"INR"}' data-message="I would like to order: Pack of 1 - ₹500">
                     <div><strong>Pack of 1</strong></div>
                     <div class="price">₹500</div>
                 </div>
-                <div class="order-option" data-pack='{"content_name": "Pack of 2", "value": 900.00, "currency": "INR"}' data-message="I would like to order: Pack of 2 - ₹900">
+                <div class="order-option" data-pack='{"content_name":"Pack of 2","value":900.00,"currency":"INR"}' data-message="I would like to order: Pack of 2 - ₹900">
                     <div><strong>Pack of 2</strong></div>
                     <div class="price">₹900</div>
                 </div>
-                <div class="order-option" data-pack='{"content_name": "Monthly subscription", "value": 2100.00, "currency": "INR"}' data-message="I would like to order: Monthly Subscription (Min 6 months) - ₹2100">
+                <div class="order-option" data-pack='{"content_name":"Monthly subscription","value":2100.00,"currency":"INR"}' data-message="I would like to order: Monthly Subscription (Min 6 months) - ₹2100">
                     <div><strong>Monthly Subscription</strong></div>
                     <div class="price">₹2100 <span class="details">(₹350 per month)</span></div>
                     <div class="details">Minimum 6 months</div>
@@ -902,7 +238,6 @@ src="https://www.facebook.com/tr?id=695552066869441&ev=PageView&noscript=1"
         </div>
     </div>
 
-    <!-- Blog Modal -->
     <div id="blog-modal" class="modal-overlay">
         <div class="modal-content">
             <button class="modal-close-btn">&times;</button>
@@ -911,28 +246,20 @@ src="https://www.facebook.com/tr?id=695552066869441&ev=PageView&noscript=1"
         </div>
     </div>
 
-    <!-- About Us Modal -->
     <div id="about-us-modal" class="modal-overlay">
         <div class="modal-content">
             <button class="modal-close-btn">&times;</button>
             <h3>About Dr. Sakshi Manjani</h3>
-            <div style="text-align: center; display: flex; flex-direction: column; align-items: center;">
-                <img src="https://www.pngplay.com/wp-content/uploads/7/Doctor-Symbol-Caduceus-Free-PNG.png" alt="Doctor's Symbol" style="width: 150px; height: 150px; object-fit: contain; margin-bottom: 1.5rem; filter: drop-shadow(0 0 8px var(--color-accent-cyan));">
-                <p style="font-size: 1.1rem; margin-bottom: 0.5rem;">
-                    <strong>BAMS, DYND</strong>
-                </p>
-                <p style="font-size: 1rem; opacity: 0.8;">
-                    8+ years of experience in Ayurveda
-                </p>
-                <p style="font-size: 0.95rem; opacity: 0.7; margin-top: 1rem;">
-                    Dedicated to promoting natural health and well-being through personalized Ayurvedic care.
-                </p>
-                <a href="https://wa.me/919326649001" target="_blank" class="btn btn-secondary" style="margin-top: 1.5rem;"><i class="fab fa-whatsapp"></i> Connect on WhatsApp</a>
+            <div style="text-align:center; display:flex; flex-direction:column; align-items:center;">
+                <img src="https://www.pngplay.com/wp-content/uploads/7/Doctor-Symbol-Caduceus-Free-PNG.png" alt="Doctor's Symbol" style="width:150px; height:150px; object-fit:contain; margin-bottom:1.5rem; filter: drop-shadow(0 0 8px var(--color-accent-cyan));">
+                <p style="font-size:1.1rem; margin-bottom:.5rem;"><strong>BAMS, DYND</strong></p>
+                <p style="font-size:1rem; opacity:.8;">8+ years of experience in Ayurveda</p>
+                <p style="font-size:.95rem; opacity:.7; margin-top:1rem;">Dedicated to promoting natural health and well-being through personalized Ayurvedic care.</p>
+                <a href="https://wa.me/919326649001" target="_blank" class="btn btn-secondary" style="margin-top:1.5rem;"><i class="fab fa-whatsapp"></i> Connect on WhatsApp</a>
             </div>
         </div>
     </div>
 
-    <!-- Vertical Sidebar Navigation -->
     <aside id="vertical-nav-sidebar">
         <button class="close-sidebar-btn">&times;</button>
         <ul class="nav-links-vertical">
@@ -943,10 +270,8 @@ src="https://www.facebook.com/tr?id=695552066869441&ev=PageView&noscript=1"
             <li><a href="#" id="open-about-us-modal"><i class="fas fa-user-md"></i> About Us</a></li>
         </ul>
     </aside>
-    <!-- Sidebar Overlay -->
     <div class="sidebar-overlay"></div>
 
-    <!-- Header and Navigation -->
     <header class="main-header">
         <nav class="header-nav">
             <a href="#" class="header-logo">
@@ -956,30 +281,45 @@ src="https://www.facebook.com/tr?id=695552066869441&ev=PageView&noscript=1"
                 <span>Antarvruksh</span>
             </a>
             <div class="menu-toggle">
-                <div class="bar"></div>
-                <div class="bar"></div>
-                <div class="bar"></div>
+                <div class="bar"></div><div class="bar"></div><div class="bar"></div>
             </div>
         </nav>
     </header>
 
     <main class="main-container">
-        <!-- Hero Section -->
         <section class="hero">
             <div class="glass-card hero-content">
                 <div class="hero-logo-container">
                     <img src="https://sandeshlekhwani.github.io/Antarvruksh//logo.png" alt="Antarvruksh Logo" onerror="this.onerror=null;this.src='https://placehold.co/90x90/4C338B/FFFFFF?text=Logo';" loading="lazy">
                 </div>
-                <h1><span>Antarvruksh</span><br><span class="inner-strength-text">Heal Naturally, Live Holistically</span></h1>
-                <p>Discover personalized healing and rejuvenation rooted in the timeless principles of Ayurveda. Nurture your mind, body, and spirit for a balanced life.</p>
+                <h1><span>Suvarnaprashan for Kids</span><br><span class="inner-strength-text">Doctor-Guided Ayurvedic Immunity Support</span></h1>
+                <p>Fewer coughs & colds, better focus, and healthy growth — safe from birth to 16 years, guided by Dr. Sakshi (BAMS).</p>
+                <p style="opacity:.8;font-size:.95rem;margin-top:.25rem;">Next Pushya Nakshatra approaching — limited slots.</p>
+
                 <div class="hero-actions">
-                    <a href="#suvarnaprashan-calendar-dates" class="btn btn-secondary" ><i class="fas fa-calendar-alt"></i> Suvarnaprashan Calendar</a>
-                    <button class="btn order-modal-trigger" onclick="fbq('track', 'InitiateCheckout');><i class="fas fa-shopping-cart"></i> Order Now</button>
+                    <a href="#suvarnaprashan-calendar-dates" class="btn btn-secondary"><i class="fas fa-calendar-alt"></i> Suvarnaprashan Calendar</a>
+                    <button class="btn order-modal-trigger" onclick="safeFbq('track','InitiateCheckout');"><i class="fas fa-shopping-cart"></i> Order Now</button>
+                    <a id="whatsapp-direct" class="btn btn-secondary" href="https://wa.me/919326649001?text=I%20want%20to%20order%20Suvarnaprashan%20(Pack%20of%201)%20for%20my%20child." target="_blank" rel="noopener">
+                        <i class="fab fa-whatsapp"></i> Quick Order on WhatsApp
+                    </a>
                 </div>
             </div>
         </section>
 
-        <!-- Suvarnaprashan Section -->
+        <section aria-label="Trust badges" style="padding:1rem 0 0;">
+          <div class="main-container">
+            <div class="glass-card" style="padding:1rem 1.25rem;">
+              <p style="margin:0;display:flex;gap:1rem;flex-wrap:wrap;align-items:center;justify-content:center;font-size:.98rem;">
+                <span>⭐️⭐️⭐️⭐️⭐️ Rated by parents</span>
+                <span style="opacity:.8;">•</span>
+                <span>Doctor-guided (BAMS)</span>
+                <span style="opacity:.8;">•</span>
+                <span>100% Ayurvedic</span>
+              </p>
+            </div>
+          </div>
+        </section>
+
         <section id="suvarnaprashan">
             <div class="glass-card">
                 <h2>What is Suvarnaprashan?</h2>
@@ -988,67 +328,36 @@ src="https://www.facebook.com/tr?id=695552066869441&ev=PageView&noscript=1"
             <div class="glass-card">
                 <h3>Key Benefits</h3>
                 <div class="benefits-grid">
-                    <div class="benefit-item">
-                        <i class="fas fa-shield-alt"></i>
-                        <span>Boosts Immunity</span>
-                    </div>
-                    <div class="benefit-item">
-                        <i class="fas fa-brain"></i>
-                        <span>Enhances Intellect</span>
-                    </div>
-                    <div class="benefit-item">
-                        <i class="fas fa-seedling"></i>
-                        <span>Improves Digestion</span>
-                    </div>
-                    <div class="benefit-item">
-                        <i class="fas fa-child"></i>
-                        <span>Supports Growth</span>
-                    </div>
-                    <div class="benefit-item">
-                        <i class="fas fa-spa"></i>
-                        <span>Promotes Vitality</span>
-                    </div>
-                     <div class="benefit-item">
-                        <i class="fas fa-allergies"></i>
-                        <span>Reduces Allergies</span>
-                    </div>
+                    <div class="benefit-item"><i class="fas fa-shield-alt"></i><span>Boosts Immunity</span></div>
+                    <div class="benefit-item"><i class="fas fa-brain"></i><span>Enhances Intellect</span></div>
+                    <div class="benefit-item"><i class="fas fa-seedling"></i><span>Improves Digestion</span></div>
+                    <div class="benefit-item"><i class="fas fa-child"></i><span>Supports Growth</span></div>
+                    <div class="benefit-item"><i class="fas fa-spa"></i><span>Promotes Vitality</span></div>
+                    <div class="benefit-item"><i class="fas fa-allergies"></i><span>Reduces Allergies</span></div>
                 </div>
             </div>
             <div class="glass-card" id="suvarnaprashan-calendar-dates">
                 <h3>Upcoming 2025 Pushya Nakshatra Dates</h3>
-                <div id="next-dose-card" class="next-dose-display-card" style="display: none;">
-                    <!-- Next dose info will be injected here by JS -->
-                </div>
-                <button id="next-dose-btn" class="btn btn-secondary" style="margin-top: 1rem;"><i class="fas fa-calendar-check"></i> Find My Next Dose</button>
-                <ul id="upcoming-dates-list" class="suvarnaprashan-calendar-list" style="display: none;">
-                    <!-- Dates will be dynamically inserted here by JavaScript -->
-                </ul>
-                <button id="show-all-dates-btn" class="btn btn-secondary" style="margin-top: 1rem; display: none;"><i class="fas fa-eye"></i> Show All Upcoming Dates</button>
+                <div id="next-dose-card" class="next-dose-display-card" style="display:none;"></div>
+                <p id="days-left-banner" style="margin-top:.75rem;color:#E6FFFA;opacity:.9"></p>
+
+                <button id="next-dose-btn" class="btn btn-secondary" style="margin-top:1rem;"><i class="fas fa-calendar-check"></i> Find My Next Dose</button>
+                <ul id="upcoming-dates-list" class="suvarnaprashan-calendar-list" style="display:none;"></ul>
+                <button id="show-all-dates-btn" class="btn btn-secondary" style="margin-top:1rem; display:none;"><i class="fas fa-eye"></i> Show All Upcoming Dates</button>
             </div>
         </section>
-        
-        <!-- Testimonials Section -->
+
         <section id="testimonials">
             <div class="glass-card">
                 <h2>Parents' Reviews</h2>
                 <div class="grid-layout col-3">
-                    <div class="testimonial-card">
-                        <p>“Antarvruksh provided a truly transformative experience for my child. I feel more balanced and energized as a parent than ever before.”</p>
-                        <span class="testimonial-author">— Priya S.</span>
-                    </div>
-                    <div class="testimonial-card">
-                        <p>“The personalized care and deep understanding of my child's needs were exceptional. Highly recommend their holistic approach.”</p>
-                        <span class="testimonial-author">— Rohan K.</span>
-                    </div>
-                    <div class="testimonial-card">
-                        <p>“After struggling with my child's immunity, I finally found lasting relief and guidance here. A sanctuary for healing.”</p>
-                        <span class="testimonial-author">— Aisha M.</span>
-                    </div>
+                    <div class="testimonial-card"><p>“Antarvruksh provided a truly transformative experience for my child. I feel more balanced and energized as a parent than ever before.”</p><span class="testimonial-author">— Priya S.</span></div>
+                    <div class="testimonial-card"><p>“The personalized care and deep understanding of my child's needs were exceptional. Highly recommend their holistic approach.”</p><span class="testimonial-author">— Rohan K.</span></div>
+                    <div class="testimonial-card"><p>“After struggling with my child's immunity, I finally found lasting relief and guidance here. A sanctuary for healing.”</p><span class="testimonial-author">— Aisha M.</span></div>
                 </div>
             </div>
         </section>
 
-        <!-- New Blog Section -->
         <section id="blog">
             <div class="glass-card">
                 <h2>Our Blog</h2>
@@ -1067,7 +376,6 @@ src="https://www.facebook.com/tr?id=695552066869441&ev=PageView&noscript=1"
             </div>
         </section>
 
-        <!-- New Contact Us Section -->
         <section id="contact">
             <div class="glass-card">
                 <h2>Contact Us</h2>
@@ -1082,56 +390,35 @@ src="https://www.facebook.com/tr?id=695552066869441&ev=PageView&noscript=1"
             </div>
         </section>
 
-        <!-- FAQ Button Section -->
         <section class="faq-button-section">
             <button class="btn btn-secondary contact-cta-suvarnaprashan"><i class="fas fa-question-circle"></i> Suvarnaprashan FAQ</button>
         </section>
 
-        <!-- Suvarnaprashan FAQ Section -->
         <section id="suvarnaprashan-faq-container">
             <div class="glass-card">
                 <h2>Frequently Asked Questions</h2>
-                <div class="faq-item">
-                    <strong>Q: What is the ideal age for Suvarnaprashan?</strong>
-                    <p>A: Suvarnaprashan can be administered from birth up to 16 years of age.</p>
-                </div>
-                <div class="faq-item">
-                    <strong>Q: How often should Suvarnaprashan be given?</strong>
-                    <p>A: It is recommended daily, or at least monthly on Pushya Nakshatra days for maximum benefits.</p>
-                </div>
-                <div class="faq-item">
-                    <strong>Q: Are there any side effects?</strong>
-                    <p>A: When prepared and administered correctly, Suvarnaprashan has no known side effects and is safe for children.</p>
-                </div>
-                <div class="faq-item">
-                    <strong>Q: What are the main ingredients?</strong>
-                    <p>A: It typically contains purified gold bhasma, honey and medicated ghee infused with specific herbs.</p>
-                </div>
-                <div class="faq-item">
-                    <strong>Q: Can it be given with other medicines?</strong>
-                    <p>A: Yes, it is generally safe to administer alongside other conventional medications; consult your pediatrician for specific cases.</p>
-                </div>
+                <div class="faq-item"><strong>Q: What is the ideal age for Suvarnaprashan?</strong><p>A: Suvarnaprashan can be administered from birth up to 16 years of age.</p></div>
+                <div class="faq-item"><strong>Q: How often should Suvarnaprashan be given?</strong><p>A: It is recommended daily, or at least monthly on Pushya Nakshatra days for maximum benefits.</p></div>
+                <div class="faq-item"><strong>Q: Are there any side effects?</strong><p>A: When prepared and administered correctly, Suvarnaprashan has no known side effects and is safe for children.</p></div>
+                <div class="faq-item"><strong>Q: What are the main ingredients?</strong><p>A: It typically contains purified gold bhasma, honey and medicated ghee infused with specific herbs.</p></div>
+                <div class="faq-item"><strong>Q: Can it be given with other medicines?</strong><p>A: Yes, it is generally safe to administer alongside other conventional medications; consult your pediatrician for specific cases.</p></div>
             </div>
         </section>
-
     </main>
 
-    <!-- Footer -->
     <footer class="main-footer">
         <p>&copy; 2025 Antarvruksh Ayurveda. All rights reserved.</p>
         <p>Managed by Dr. Sakshi Manjani (Antarvruksh)</p>
     </footer>
 
-    <!-- Fixed Floating Button -->
-    <button id="fixed-float-btn" class="fixed-float-btn order-modal-trigger" onclick="fbq('track', 'InitiateCheckout');>
-        <i class="fas fa-shopping-cart"></i>
-        <span>Order Now</span>
+    <button id="fixed-float-btn" class="fixed-float-btn order-modal-trigger" onclick="safeFbq('track','InitiateCheckout');">
+        <i class="fas fa-shopping-cart"></i><span>Order Now</span>
     </button>
 
-    <!-- Embedded JavaScript -->
     <script>
+        window.safeFbq = function(){ try{ return fbq.apply(null, arguments); }catch(e){} };
+
         document.addEventListener('DOMContentLoaded', function() {
-            // --- Starry Background Effect ---
             const starField = document.getElementById('star-field');
             const starCount = 150;
             for (let i = 0; i < starCount; i++) {
@@ -1147,7 +434,6 @@ src="https://www.facebook.com/tr?id=695552066869441&ev=PageView&noscript=1"
                 starField.appendChild(star);
             }
 
-            // --- Suvarnaprashan Calendar Dynamic Update / Game Logic ---
             const pushyaNakshatraDates2025 = [
                 { month: 'January', date: 14, day: 'Tuesday', endDate: new Date(2025, 0, 15, 0, 8, 0) },
                 { month: 'February', date: 11, day: 'Monday', endDate: new Date(2025, 1, 11, 18, 34, 0) },
@@ -1174,35 +460,37 @@ src="https://www.facebook.com/tr?id=695552066869441&ev=PageView&noscript=1"
 
             function getOrdinalSuffix(day) {
                 if (day > 3 && day < 21) return 'th';
-                switch (day % 10) {
-                    case 1: return 'st';
-                    case 2: return 'nd';
-                    case 3: return 'rd';
-                    default: return 'th';
-                }
+                switch (day % 10) { case 1: return 'st'; case 2: return 'nd'; case 3: return 'rd'; default: return 'th'; }
             }
 
             function initializeCalendarGame() {
                 const today = new Date();
                 upcomingFilteredDates = pushyaNakshatraDates2025.filter(dateInfo => dateInfo.endDate.getTime() >= today.getTime());
-
                 currentDisplayIndex = -1;
                 nextDoseCard.style.display = 'none';
                 upcomingDatesList.style.display = 'none';
                 showAllDatesBtn.style.display = 'none';
                 nextDoseBtn.style.display = 'inline-flex';
                 nextDoseBtn.innerHTML = '<i class="fas fa-calendar-check"></i> Find My Next Dose';
+
+                const out = document.getElementById('days-left-banner');
+                if(out){
+                    const next = pushyaNakshatraDates2025.find(d => d.endDate >= today);
+                    if(next){
+                        const oneDay = 24*60*60*1000;
+                        const days = Math.max(1, Math.ceil((next.endDate - today)/oneDay));
+                        out.innerHTML = `⏳ <strong>${days} day${days>1?'s':''} left</strong> until <strong>${next.month} ${next.date}</strong> Pushya Nakshatra. Book now.`;
+                    }
+                }
             }
 
             nextDoseBtn.addEventListener('click', () => {
                 upcomingDatesList.style.display = 'none';
-
                 if (currentDisplayIndex + 1 < upcomingFilteredDates.length) {
                     currentDisplayIndex++;
                     const nextDate = upcomingFilteredDates[currentDisplayIndex];
                     nextDoseCard.innerHTML = `<h4>Your Next Dose is on</h4><p><strong>${nextDate.month} ${nextDate.date}${getOrdinalSuffix(nextDate.date)}</strong> (${nextDate.day})</p>`;
                     nextDoseCard.style.display = 'block';
-
                     if (currentDisplayIndex < upcomingFilteredDates.length - 1) {
                         nextDoseBtn.innerHTML = '<i class="fas fa-arrow-right"></i> Find Next Dose';
                         showAllDatesBtn.style.display = 'inline-flex';
@@ -1230,27 +518,17 @@ src="https://www.facebook.com/tr?id=695552066869441&ev=PageView&noscript=1"
                 nextDoseBtn.style.display = 'none';
                 showAllDatesBtn.style.display = 'none';
             });
-            
+
             initializeCalendarGame();
 
-            // --- Navigation Toggle for Mobile (Hamburger Menu) ---
             const menuToggle = document.querySelector('.menu-toggle');
             const verticalNavSidebar = document.getElementById('vertical-nav-sidebar');
             const closeSidebarBtn = document.querySelector('.close-sidebar-btn');
             const sidebarOverlay = document.querySelector('.sidebar-overlay');
             const body = document.body;
 
-            function openSidebar() {
-                verticalNavSidebar.classList.add('active');
-                sidebarOverlay.classList.add('active');
-                body.classList.add('sidebar-open');
-            }
-
-            function closeSidebar() {
-                verticalNavSidebar.classList.remove('active');
-                sidebarOverlay.classList.remove('active');
-                body.classList.remove('sidebar-open');
-            }
+            function openSidebar() { verticalNavSidebar.classList.add('active'); sidebarOverlay.classList.add('active'); body.classList.add('sidebar-open'); }
+            function closeSidebar() { verticalNavSidebar.classList.remove('active'); sidebarOverlay.classList.remove('active'); body.classList.remove('sidebar-open'); }
 
             menuToggle.addEventListener('click', openSidebar);
             closeSidebarBtn.addEventListener('click', closeSidebar);
@@ -1258,63 +536,68 @@ src="https://www.facebook.com/tr?id=695552066869441&ev=PageView&noscript=1"
 
             document.querySelectorAll('#vertical-nav-sidebar a, #vertical-nav-sidebar button').forEach(link => {
                 link.addEventListener('click', () => {
-                    if (link.tagName === 'A' || link.classList.contains('contact-cta-nav')) {
-                        closeSidebar();
-                    }
+                    if (link.tagName === 'A' || link.classList.contains('contact-cta-nav')) closeSidebar();
                 });
             });
 
-            // --- Modal Logic ---
             const antravukshWhatsAppNumber = "919326649001";
 
             function setupModal(modalId, openTriggers) {
                 const modal = document.getElementById(modalId);
                 if (!modal) return;
                 const closeBtn = modal.querySelector('.modal-close-btn');
-                
                 const openModal = () => modal.classList.add('visible');
                 const closeModal = () => modal.classList.remove('visible');
-
                 if (openTriggers) {
                     document.querySelectorAll(openTriggers).forEach(btn => btn.addEventListener('click', openModal));
                 }
                 closeBtn.addEventListener('click', closeModal);
-                modal.addEventListener('click', (e) => {
-                    if (e.target === modal) closeModal();
-                });
+                modal.addEventListener('click', (e) => { if (e.target === modal) closeModal(); });
                 return { openModal, closeModal };
             }
 
             const { openModal: openOrderModal, closeModal: closeOrderModal } = setupModal('order-modal', '.order-modal-trigger');
-            const { openModal: openBlogModal, closeModal: closeBlogModal } = setupModal('blog-modal');
-            const { openModal: openAboutUsModal } = setupModal('about-us-modal', '#open-about-us-modal');
-            
-            // Order Modal Logic
+            setupModal('blog-modal');
+            setupModal('about-us-modal', '#open-about-us-modal');
+
+            function buildWhatsAppUrl(number, message){
+              const base = `https://wa.me/${number}?text=${encodeURIComponent(message)}`;
+              const params = new URLSearchParams(window.location.search);
+              const utm = [];
+              ['utm_source','utm_medium','utm_campaign','utm_adset','utm_content','utm_term'].forEach(k=>{
+                if(params.get(k)) utm.push(`${k}=${encodeURIComponent(params.get(k))}`);
+              });
+              return utm.length ? `${base}&${utm.join('&')}` : base;
+            }
+
             const orderOptionsContainer = document.querySelector('.order-options');
             const orderConfirmBtn = document.getElementById('modal-order-btn');
             let selectedOrderMessage = '';
+            let selectedPackData = null;
 
             orderOptionsContainer.addEventListener('click', (e) => {
                 const selectedOption = e.target.closest('.order-option');
                 if (!selectedOption) return;
-
                 orderOptionsContainer.querySelectorAll('.order-option').forEach(opt => opt.classList.remove('selected'));
                 selectedOption.classList.add('selected');
-                
                 selectedOrderMessage = selectedOption.dataset.message;
                 orderConfirmBtn.disabled = false;
+                selectedPackData = JSON.parse(selectedOption.getAttribute('data-pack'));
+                safeFbq('track', 'ViewContent', selectedPackData);
             });
 
             orderConfirmBtn.addEventListener('click', () => {
                 if (selectedOrderMessage) {
                     const finalMessage = `${selectedOrderMessage}\n\nPlease place my order.`;
-                    const whatsappUrl = `https://wa.me/${antravukshWhatsAppNumber}?text=${encodeURIComponent(finalMessage)}`;
+                    const whatsappUrl = buildWhatsAppUrl(antravukshWhatsAppNumber, finalMessage);
+                    safeFbq('track', 'Contact', selectedPackData || {});
                     window.open(whatsappUrl, '_blank');
-                    closeOrderModal();
+                    if (typeof closeOrderModal === 'function') closeOrderModal();
+                } else {
+                    safeFbq('track', 'Contact');
                 }
             });
 
-            // Blog Modal Logic
             document.querySelectorAll('.read-more-btn').forEach(btn => {
                 btn.addEventListener('click', (e) => {
                     e.preventDefault();
@@ -1322,14 +605,13 @@ src="https://www.facebook.com/tr?id=695552066869441&ev=PageView&noscript=1"
                     const content = e.target.dataset.content;
                     document.getElementById('blog-modal-title').textContent = title;
                     document.getElementById('blog-modal-content').textContent = content;
-                    openBlogModal();
+                    const modal = document.getElementById('blog-modal');
+                    if (modal) modal.classList.add('visible');
                 });
             });
 
-            // --- FAQ Toggle Logic ---
             const suvarnaprashanFAQBtn = document.querySelector('.contact-cta-suvarnaprashan');
             const suvarnaprashanFAQContainer = document.getElementById('suvarnaprashan-faq-container');
-
             suvarnaprashanFAQBtn.addEventListener('click', (e) => {
                 e.preventDefault();
                 suvarnaprashanFAQContainer.classList.toggle('visible');
@@ -1338,47 +620,23 @@ src="https://www.facebook.com/tr?id=695552066869441&ev=PageView&noscript=1"
                 }
             });
 
-            // --- Sticky Button Visibility Logic ---
             const heroPanel = document.querySelector('.hero .glass-card');
             const stickyBtn = document.getElementById('fixed-float-btn');
-
             window.addEventListener('scroll', () => {
                 if (heroPanel) {
                     const heroPanelBottom = heroPanel.getBoundingClientRect().bottom;
-                    if (heroPanelBottom < 80) { // 80px buffer from top
-                        stickyBtn.classList.add('visible');
-                    } else {
-                        stickyBtn.classList.remove('visible');
-                    }
+                    if (heroPanelBottom < 80) stickyBtn.classList.add('visible');
+                    else stickyBtn.classList.remove('visible');
                 }
             }, { passive: true });
+
+            (function(){
+                const a = document.getElementById('whatsapp-direct');
+                if(!a) return;
+                const msg = "I want to order Suvarnaprashan (Pack of 1) for my child.";
+                a.href = buildWhatsAppUrl("919326649001", msg);
+            })();
         });
-
-        let selectedPackData = null;
-
-    // Listen for clicks on the pack options
-    document.querySelectorAll('.order-option').forEach(option => {
-        option.addEventListener('click', function() {
-            // Get the data from the selected pack
-            selectedPackData = JSON.parse(this.getAttribute('data-pack'));
-
-            // Track a 'ViewContent' event with the pack details
-            fbq('track', 'ViewContent', selectedPackData);
-        });
-    });
-
-    // Listen for clicks on the final "Confirm Order" button
-    document.getElementById('modal-order-btn').addEventListener('click', function() {
-        if (selectedPackData) {
-            // Track the 'Contact' event with the selected pack data
-            fbq('track', 'Contact', selectedPackData);
-        } else {
-            // Fallback if the user somehow clicks without selecting a pack
-            fbq('track', 'Contact');
-        }
-    });
     </script>
-
-
 </body>
 </html>
