@@ -70,7 +70,6 @@
         .nav-links-vertical li { margin-bottom:1rem; }
         .nav-links-vertical a, .nav-links-vertical button { display:flex; align-items:center; gap:1rem; padding:.8rem 1rem; border-radius:.75rem; font-weight:600; color:var(--color-text-on-dark);
             transition:all .3s; background: var(--color-glass-bg); border:1px solid var(--color-glass-border); backdrop-filter: blur(5px); -webkit-backdrop-filter: blur(5px); cursor:pointer; width:100%; text-align:left; font-size:1.1rem; }
-        .nav-links-vertical a i, .nav-links-vertical button i { font-size:1.3rem; color:var(--color-accent-cyan); }
         .nav-links-vertical a:hover, .nav-links-vertical button:hover { background: rgba(0,240,181,0.1); color: var(--color-accent-cyan); transform: translateX(5px) scale(1.02); border-color: rgba(0,240,181,0.5); box-shadow:0 0 15px rgba(0,240,181,0.2); }
         .sidebar-overlay { position:fixed; inset:0; background: rgba(0,0,0,0.6); backdrop-filter: blur(5px); z-index:1000; display:none; opacity:0; transition: opacity .4s; }
         .sidebar-overlay.active { display:block; opacity:1; }
@@ -78,11 +77,34 @@
         section { padding: 3rem 0; }
         .hero { padding-top:6rem; padding-bottom:3rem; text-align:center; display:flex; align-items:center; min-height:80vh; }
         .hero-content { max-width:800px; margin:0 auto; }
-        .hero-logo-container { width:120px; height:120px; margin:0 auto 2rem; border-radius:50%; background:white; display:flex; align-items:center; justify-content:center; padding:10px;
-            box-shadow: inset 4px 4px 8px rgba(0,0,0,0.2), inset -4px -4px 8px rgba(255,255,255,0.7); }
-        .hero-logo-container img { width:100%; height:100%; object-fit:contain; }
+        .hero-logo-container { 
+            position: relative;
+            width:150px; 
+            height:150px; 
+            margin:0 auto 2rem; 
+            border-radius:50%; 
+            background:white; 
+            display:flex; 
+            align-items:center; 
+            justify-content:center; 
+            padding:10px;
+            box-shadow: inset 4px 4px 8px rgba(0,0,0,0.2), inset -4px -4px 8px rgba(255,255,255,0.7);
+            overflow: hidden;
+            transition: transform 0.3s ease-in-out;
+        }
+        .hero-logo-container:hover {
+            transform: scale(1.05);
+        }
+        .hero-logo-container img { 
+            width:100%; 
+            height:100%; 
+            object-fit:cover;
+            filter:none;
+            transform: scale(1.2); /* Adjust the zoom level */
+            transition: transform 0.3s ease-in-out;
+        }
         .hero h1 { font-family:'Playfair Display', serif; font-size:clamp(3.5rem,6vw,5.5rem); font-weight:700; line-height:1.1; margin-bottom:1.5rem; color:var(--color-text-on-dark); }
-        .hero h1 .inner-strength-text { font-family:'Montserrat', sans-serif; font-size:clamp(2.5rem,4.5vw,4rem); display:block; margin-top:.5rem; color:var(--color-text-on-dark); text-shadow:none; }
+        .hero h1 .inner-strength-text { font-family:'Montserrat', sans-serif; font-size:clamp(1.2rem, 2.5vw, 1.8rem); display:inline; margin-top:0; color:var(--color-text-on-dark); text-shadow:none; }
         .hero p { font-size:clamp(1.1rem,1.8vw,1.3rem); max-width:700px; margin:1.5rem auto .75rem; color: var(--color-text-darker); }
         .hero-actions { display:flex; justify-content:center; gap:1rem; flex-wrap:wrap; margin-top:1.25rem; }
 
@@ -290,11 +312,20 @@ fbq('init', '1436358160924807'); fbq('track', 'PageView');
         <section class="hero">
             <div class="glass-card hero-content">
                 <div class="hero-logo-container">
-                    <img src="https://sandeshlekhwani.github.io/Antarvruksh//logo.png" alt="Antarvruksh Logo" onerror="this.onerror=null;this.src='https://placehold.co/90x90/4C338B/FFFFFF?text=Logo';" loading="lazy">
+                    <img src="https://sandeshlekhwani.github.io/Antarvruksh//1000364009.png" alt="Antarvruksh product image" onerror="this.onerror=null;this.src='https://placehold.co/90x90/4C338B/FFFFFF?text=Logo';" loading="lazy">
                 </div>
-                <h1><span>Suvarnaprashan for Kids</span><br><span class="inner-strength-text">Doctor-Guided Ayurvedic Immunity Support</span></h1>
-                <p>Fewer coughs & colds, better focus, and healthy growth — safe from birth to 16 years, guided by Dr. Sakshi (BAMS).</p>
-                <p style="opacity:.8;font-size:.95rem;margin-top:.25rem;">Next Pushya Nakshatra approaching — limited slots.</p>
+                <h1><span>Suvarnaprashan for Kids</span> <span class="inner-strength-text">Doctor-Guided Ayurvedic Immunity Support</span></h1>
+                <h3>Key Benefits</h3>
+                <div class="benefits-grid">
+                    <div class="benefit-item"><i class="fas fa-shield-alt"></i><span>Boosts Immunity</span></div>
+                    <div class="benefit-item"><i class="fas fa-brain"></i><span>Enhances Intellect</span></div>
+                    <div class="benefit-item"><i class="fas fa-seedling"></i><span>Improves Digestion</span></div>
+                    <div class="benefit-item"><i class="fas fa-child"></i><span>Supports Growth</span></div>
+                    <div class="benefit-item"><i class="fas fa-spa"></i><span>Promotes Vitality</span></div>
+                    <div class="benefit-item"><i class="fas fa-allergies"></i><span>Reduces Allergies</span></div>
+                </div>
+        
+                <p style="opacity:.8;font-size:.95rem;margin-top:.25rem;">Next Pushya Nakshatra approaching — limited Quantity.</p>
 
                 <div class="hero-actions">
                     <a href="#suvarnaprashan-calendar-dates" class="btn btn-secondary"><i class="fas fa-calendar-alt"></i> Suvarnaprashan Calendar</a>
@@ -323,22 +354,11 @@ fbq('init', '1436358160924807'); fbq('track', 'PageView');
         <section id="suvarnaprashan">
             <div class="glass-card">
                 <h2>What is Suvarnaprashan?</h2>
-                <!-- Space allocated for the product image -->
-                <div style="text-align: center; margin-bottom: 2rem;">
-                  <img src="https://sandeshlekhwani.github.io/Antarvruksh/1000364009.png"text=Suvarnaprashan+Product" alt="Suvarnaprashan product image placeholder" style="max-width: 100%; height: auto; border-radius: 1.5rem; border: 1px solid var(--color-glass-border);">
+            <div style="text-align: center; margin-bottom: 2rem;">
+               
                 </div>
                 <p>Suvarnaprashan is an ancient Ayurvedic practice involving the periodic administration of purified gold (Suvarna bhasma) mixed with honey and medicated ghee to children. It is recommended for children from birth up to 16 years to promote overall health and development.</p>
-            </div>
-            <div class="glass-card">
-                <h3>Key Benefits</h3>
-                <div class="benefits-grid">
-                    <div class="benefit-item"><i class="fas fa-shield-alt"></i><span>Boosts Immunity</span></div>
-                    <div class="benefit-item"><i class="fas fa-brain"></i><span>Enhances Intellect</span></div>
-                    <div class="benefit-item"><i class="fas fa-seedling"></i><span>Improves Digestion</span></div>
-                    <div class="benefit-item"><i class="fas fa-child"></i><span>Supports Growth</span></div>
-                    <div class="benefit-item"><i class="fas fa-spa"></i><span>Promotes Vitality</span></div>
-                    <div class="benefit-item"><i class="fas fa-allergies"></i><span>Reduces Allergies</span></div>
-                </div>
+     
             </div>
             <div class="glass-card" id="suvarnaprashan-calendar-dates">
                 <h3>Upcoming 2025 Pushya Nakshatra Dates</h3>
@@ -426,241 +446,300 @@ fbq('init', '1436358160924807'); fbq('track', 'PageView');
             star.style.top = `${Math.random() * 100 + 10}vh`; // Start below viewport
             star.style.animationDuration = `${Math.random() * 15 + 10}s`;
             star.style.animationDelay = `${-Math.random() * 20}s`;
-            document.getElementById('star-field').appendChild(star);
+            const starField = document.getElementById('star-field');
+            if (starField) {
+                starField.appendChild(star);
+            }
         }
         for (let i = 0; i < 50; i++) { createStar(); }
         setInterval(createStar, 2000);
-
-        // Modals
-        const orderModal = document.getElementById('order-modal');
-        const blogModal = document.getElementById('blog-modal');
-        const aboutUsModal = document.getElementById('about-us-modal');
-        const modals = [orderModal, blogModal, aboutUsModal];
-
-        document.querySelectorAll('.order-modal-trigger').forEach(trigger => {
-            trigger.addEventListener('click', () => {
-                showModal(orderModal);
-            });
-        });
-
-        document.querySelectorAll('.read-more-btn').forEach(trigger => {
-            trigger.addEventListener('click', (e) => {
-                e.preventDefault();
-                const title = trigger.getAttribute('data-title');
-                const content = trigger.getAttribute('data-content');
-                document.getElementById('blog-modal-title').textContent = title;
-                document.getElementById('blog-modal-content').textContent = content;
-                showModal(blogModal);
-            });
-        });
-
-        document.querySelectorAll('#open-about-us-modal').forEach(trigger => {
-            trigger.addEventListener('click', (e) => {
-                e.preventDefault();
-                showModal(aboutUsModal);
-                closeSidebar();
-            });
-        });
-
-        document.querySelectorAll('.modal-close-btn').forEach(btn => {
-            btn.addEventListener('click', () => {
-                closeModal(btn.closest('.modal-overlay'));
-            });
-        });
-
-        modals.forEach(modal => {
-            modal.addEventListener('click', (e) => {
-                if (e.target === modal) {
-                    closeModal(modal);
-                }
-            });
-        });
-
-        function showModal(modal) {
-            modal.style.display = 'flex';
-            setTimeout(() => modal.classList.add('visible'), 10);
-            document.body.style.overflow = 'hidden';
-        }
-
-        function closeModal(modal) {
-            modal.classList.remove('visible');
-            setTimeout(() => {
-                modal.style.display = 'none';
-                document.body.style.overflow = '';
-            }, 300);
-        }
-
-        // Order button logic
-        const orderOptions = document.querySelectorAll('.order-option');
-        const modalOrderBtn = document.getElementById('modal-order-btn');
-
-        orderOptions.forEach(option => {
-            option.addEventListener('click', () => {
-                orderOptions.forEach(opt => opt.classList.remove('selected'));
-                option.classList.add('selected');
-                modalOrderBtn.disabled = false;
-            });
-        });
-
-        modalOrderBtn.addEventListener('click', () => {
-            const selectedOption = document.querySelector('.order-option.selected');
-            if (selectedOption) {
-                const message = selectedOption.getAttribute('data-message');
-                const whatsappUrl = `https://wa.me/919326649001?text=${encodeURIComponent(message)}`;
-                window.open(whatsappUrl, '_blank');
-                const packData = JSON.parse(selectedOption.getAttribute('data-pack'));
-                if (typeof safeFbq !== 'undefined') {
-                    safeFbq('track', 'Purchase', packData);
-                }
-            }
-        });
-
-        // Floating order button
-        const floatOrderBtn = document.getElementById('float-order-btn');
-        const heroSection = document.querySelector('.hero');
-        const heroSectionEnd = heroSection.getBoundingClientRect().height;
-        let isFloatBtnVisible = false;
-
-        window.addEventListener('scroll', () => {
-            const scrollPosition = window.scrollY;
-            if (scrollPosition > heroSectionEnd && !isFloatBtnVisible) {
-                floatOrderBtn.classList.add('visible');
-                isFloatBtnVisible = true;
-            } else if (scrollPosition <= heroSectionEnd && isFloatBtnVisible) {
-                floatOrderBtn.classList.remove('visible');
-                isFloatBtnVisible = false;
-            }
-        });
-
-        // Pushya Nakshatra calendar logic
-        const nextDoseBtn = document.getElementById('next-dose-btn');
-        const showAllDatesBtn = document.getElementById('show-all-dates-btn');
-        const upcomingDatesList = document.getElementById('upcoming-dates-list');
-        const nextDoseCard = document.getElementById('next-dose-card');
-        const daysLeftBanner = document.getElementById('days-left-banner');
-
-        // Hardcoded list of Pushya Nakshatra dates for 2025 only
-        const pushyaDates = [
-            '2025-01-21', '2025-02-17', '2025-03-16', '2025-04-12', '2025-05-10', '2025-06-06', '2025-07-03', '2025-07-31', '2025-08-27', '2025-09-17', '2025-10-21', '2025-11-17', '2025-12-15'
-        ].map(dateStr => new Date(dateStr));
-
-        // Function to find and display the next upcoming date
-        function displayNextDose() {
-            const now = new Date();
-            now.setHours(0, 0, 0, 0);
-            const nextDate = pushyaDates.find(date => date >= now);
-
-            if (nextDate) {
-                const day = nextDate.getDate();
-                const month = nextDate.toLocaleString('default', { month: 'long' });
-                const year = nextDate.getFullYear();
-                const diffTime = Math.abs(nextDate - now);
-                const diffDays = Math.ceil(diffTime / (1000 * 60 * 60 * 24));
-                
-                nextDoseCard.innerHTML = `
-                    <h4>Next Pushya Nakshatra:</h4>
-                    <p><strong>${day} ${month}, ${year}</strong></p>
-                `;
-                daysLeftBanner.textContent = `Just ${diffDays} days left for the next dose.`;
-                nextDoseCard.style.display = 'block';
-            } else {
-                nextDoseCard.style.display = 'block';
-                nextDoseCard.innerHTML = '<h4>All 2025 dates have passed. New dates will be announced soon.</h4>';
-                daysLeftBanner.style.display = 'none';
-            }
-        }
-
-        // Function to display all upcoming dates
-        function showAllUpcomingDates() {
-            const now = new Date();
-            now.setHours(0, 0, 0, 0);
-            upcomingDatesList.innerHTML = '';
-            let upcomingCount = 0;
-            
-            pushyaDates.forEach(date => {
-                if (date >= now) {
-                    const day = date.getDate();
-                    const month = date.toLocaleString('default', { month: 'long' });
-                    const year = date.getFullYear();
-                    const li = document.createElement('li');
-                    li.innerHTML = `<strong>${day} ${month}, ${year}</strong>`;
-                    upcomingDatesList.appendChild(li);
-                    upcomingCount++;
-                }
-            });
-
-            if (upcomingCount === 0) {
-                upcomingDatesList.innerHTML = '<li>No upcoming dates found for this year.</li>';
-            }
-
-            upcomingDatesList.style.display = 'grid';
-            showAllDatesBtn.style.display = 'none';
-        }
-
-        // Event listeners for the calendar section
-        nextDoseBtn.addEventListener('click', () => {
-            displayNextDose();
-            showAllDatesBtn.style.display = 'inline-flex';
-            upcomingDatesList.style.display = 'none';
-        });
-
-        showAllDatesBtn.addEventListener('click', showAllUpcomingDates);
-        
-        // FAQ toggle logic
-        const faqBtn = document.querySelector('.contact-cta-suvarnaprashan');
-        const faqContainer = document.getElementById('suvarnaprashan-faq-container');
-
-        faqBtn.addEventListener('click', () => {
-            faqContainer.classList.toggle('visible');
-            if (faqContainer.classList.contains('visible')) {
-                faqBtn.innerHTML = '<i class="fas fa-times"></i> Hide FAQ';
-                faqBtn.scrollIntoView({ behavior: 'smooth', block: 'start' });
-            } else {
-                faqBtn.innerHTML = '<i class="fas fa-question-circle"></i> Suvarnaprashan FAQ';
-            }
-        });
-
-        // Initialize the page on load
-        window.addEventListener('DOMContentLoaded', () => {
-            // Display the next dose automatically
-            displayNextDose();
-        });
-
-        // Sidebar logic
-        const menuToggle = document.querySelector('.menu-toggle');
-        const sidebar = document.getElementById('vertical-nav-sidebar');
-        const sidebarOverlay = document.querySelector('.sidebar-overlay');
-        const closeSidebarBtn = document.querySelector('.close-sidebar-btn');
-        
-        function openSidebar() {
-            menuToggle.classList.add('active');
-            sidebar.classList.add('active');
-            sidebarOverlay.classList.add('active');
-            document.body.classList.add('sidebar-open');
-        }
-        function closeSidebar() {
-            menuToggle.classList.remove('active');
-            sidebar.classList.remove('active');
-            sidebarOverlay.classList.remove('active');
-            document.body.classList.remove('sidebar-open');
-        }
-
-        menuToggle.addEventListener('click', openSidebar);
-        sidebarOverlay.addEventListener('click', closeSidebar);
-        closeSidebarBtn.addEventListener('click', closeSidebar);
-
-        // Close sidebar when a link is clicked
-        document.querySelectorAll('#vertical-nav-sidebar a').forEach(link => {
-            link.addEventListener('click', () => {
-                closeSidebar();
-            });
-        });
 
         function safeFbq(eventName, ...args) {
             if (typeof fbq === 'function') {
                 fbq(eventName, ...args);
             }
         }
+
+        // Initialize the page after the DOM is fully loaded
+        window.addEventListener('DOMContentLoaded', () => {
+
+            // Modals
+            const orderModal = document.getElementById('order-modal');
+            const blogModal = document.getElementById('blog-modal');
+            const aboutUsModal = document.getElementById('about-us-modal');
+            const modals = [orderModal, blogModal, aboutUsModal];
+
+            document.querySelectorAll('.order-modal-trigger').forEach(trigger => {
+                if (trigger) {
+                    trigger.addEventListener('click', () => {
+                        if (orderModal) { showModal(orderModal); }
+                    });
+                }
+            });
+
+            document.querySelectorAll('.read-more-btn').forEach(trigger => {
+                if (trigger) {
+                    trigger.addEventListener('click', (e) => {
+                        e.preventDefault();
+                        const title = trigger.getAttribute('data-title');
+                        const content = trigger.getAttribute('data-content');
+                        const blogModalTitle = document.getElementById('blog-modal-title');
+                        const blogModalContent = document.getElementById('blog-modal-content');
+                        if (blogModalTitle && blogModalContent && blogModal) {
+                            blogModalTitle.textContent = title;
+                            blogModalContent.textContent = content;
+                            showModal(blogModal);
+                        }
+                    });
+                }
+            });
+
+            document.querySelectorAll('#open-about-us-modal').forEach(trigger => {
+                if (trigger) {
+                    trigger.addEventListener('click', (e) => {
+                        e.preventDefault();
+                        if (aboutUsModal) { showModal(aboutUsModal); }
+                        closeSidebar();
+                    });
+                }
+            });
+
+            document.querySelectorAll('.modal-close-btn').forEach(btn => {
+                if (btn) {
+                    btn.addEventListener('click', () => {
+                        closeModal(btn.closest('.modal-overlay'));
+                    });
+                }
+            });
+
+            modals.forEach(modal => {
+                if (modal) {
+                    modal.addEventListener('click', (e) => {
+                        if (e.target === modal) {
+                            closeModal(modal);
+                        }
+                    });
+                }
+            });
+
+            function showModal(modal) {
+                if (modal) {
+                    modal.style.display = 'flex';
+                    setTimeout(() => modal.classList.add('visible'), 10);
+                    document.body.style.overflow = 'hidden';
+                }
+            }
+
+            function closeModal(modal) {
+                if (modal) {
+                    modal.classList.remove('visible');
+                    setTimeout(() => {
+                        modal.style.display = 'none';
+                        document.body.style.overflow = '';
+                    }, 300);
+                }
+            }
+
+            // Order button logic
+            const orderOptions = document.querySelectorAll('.order-option');
+            const modalOrderBtn = document.getElementById('modal-order-btn');
+
+            orderOptions.forEach(option => {
+                if (option) {
+                    option.addEventListener('click', () => {
+                        orderOptions.forEach(opt => opt.classList.remove('selected'));
+                        option.classList.add('selected');
+                        if (modalOrderBtn) {
+                            modalOrderBtn.disabled = false;
+                        }
+                    });
+                }
+            });
+
+            if (modalOrderBtn) {
+                modalOrderBtn.addEventListener('click', () => {
+                    const selectedOption = document.querySelector('.order-option.selected');
+                    if (selectedOption) {
+                        const message = selectedOption.getAttribute('data-message');
+                        const whatsappUrl = `https://wa.me/919326649001?text=${encodeURIComponent(message)}`;
+                        window.open(whatsappUrl, '_blank');
+                        const packData = JSON.parse(selectedOption.getAttribute('data-pack'));
+                        if (typeof safeFbq !== 'undefined') {
+                            safeFbq('track', 'Purchase', packData);
+                        }
+                    }
+                });
+            }
+
+            // Floating order button
+            const floatOrderBtn = document.getElementById('float-order-btn');
+            const heroSection = document.querySelector('.hero');
+            
+            if (heroSection && floatOrderBtn) {
+                const heroSectionEnd = heroSection.getBoundingClientRect().height;
+                let isFloatBtnVisible = false;
+                window.addEventListener('scroll', () => {
+                    const scrollPosition = window.scrollY;
+                    if (scrollPosition > heroSectionEnd && !isFloatBtnVisible) {
+                        floatOrderBtn.classList.add('visible');
+                        isFloatBtnVisible = true;
+                    } else if (scrollPosition <= heroSectionEnd && isFloatBtnVisible) {
+                        floatOrderBtn.classList.remove('visible');
+                        isFloatBtnVisible = false;
+                    }
+                });
+            }
+
+            // Pushya Nakshatra calendar logic
+            const nextDoseBtn = document.getElementById('next-dose-btn');
+            const showAllDatesBtn = document.getElementById('show-all-dates-btn');
+            const upcomingDatesList = document.getElementById('upcoming-dates-list');
+            const nextDoseCard = document.getElementById('next-dose-card');
+            const daysLeftBanner = document.getElementById('days-left-banner');
+
+            // Hardcoded list of Pushya Nakshatra dates for 2025 only
+            const pushyaDates = [
+                '2025-01-21', '2025-02-17', '2025-03-16', '2025-04-12', '2025-05-10', '2025-06-06', '2025-07-03', '2025-07-31', '2025-08-27', '2025-09-17', '2025-10-21', '2025-11-17', '2025-12-15'
+            ].map(dateStr => new Date(dateStr));
+
+            // Function to find and display the next upcoming date
+            function displayNextDose() {
+                const now = new Date();
+                now.setHours(0, 0, 0, 0);
+                const nextDate = pushyaDates.find(date => date >= now);
+
+                if (nextDate) {
+                    const day = nextDate.getDate();
+                    const month = nextDate.toLocaleString('default', { month: 'long' });
+                    const year = nextDate.getFullYear();
+                    const diffTime = Math.abs(nextDate - now);
+                    const diffDays = Math.ceil(diffTime / (1000 * 60 * 60 * 24));
+                    
+                    if (nextDoseCard) {
+                        nextDoseCard.innerHTML = `
+                            <h4>Next Pushya Nakshatra:</h4>
+                            <p><strong>${day} ${month}, ${year}</strong></p>
+                        `;
+                        nextDoseCard.style.display = 'block';
+                    }
+                    if (daysLeftBanner) {
+                        daysLeftBanner.textContent = `Just ${diffDays} days left for the next dose.`;
+                    }
+                } else {
+                    if (nextDoseCard) {
+                        nextDoseCard.style.display = 'block';
+                        nextDoseCard.innerHTML = '<h4>All 2025 dates have passed. New dates will be announced soon.</h4>';
+                    }
+                    if (daysLeftBanner) {
+                        daysLeftBanner.style.display = 'none';
+                    }
+                }
+            }
+
+            // Function to display all upcoming dates
+            function showAllUpcomingDates() {
+                const now = new Date();
+                now.setHours(0, 0, 0, 0);
+                if (upcomingDatesList) {
+                    upcomingDatesList.innerHTML = '';
+                    let upcomingCount = 0;
+                    
+                    pushyaDates.forEach(date => {
+                        if (date >= now) {
+                            const day = date.getDate();
+                            const month = date.toLocaleString('default', { month: 'long' });
+                            const year = date.getFullYear();
+                            const li = document.createElement('li');
+                            li.innerHTML = `<strong>${day} ${month}, ${year}</strong>`;
+                            upcomingDatesList.appendChild(li);
+                            upcomingCount++;
+                        }
+                    });
+
+                    if (upcomingCount === 0) {
+                        upcomingDatesList.innerHTML = '<li>No upcoming dates found for this year.</li>';
+                    }
+
+                    upcomingDatesList.style.display = 'grid';
+                }
+                if (showAllDatesBtn) {
+                    showAllDatesBtn.style.display = 'none';
+                }
+            }
+
+            // Event listeners for the calendar section
+            if (nextDoseBtn) {
+                nextDoseBtn.addEventListener('click', () => {
+                    displayNextDose();
+                    if (showAllDatesBtn) {
+                        showAllDatesBtn.style.display = 'inline-flex';
+                    }
+                    if (upcomingDatesList) {
+                        upcomingDatesList.style.display = 'none';
+                    }
+                });
+            }
+
+            if (showAllDatesBtn) {
+                showAllDatesBtn.addEventListener('click', showAllUpcomingDates);
+            }
+            
+            // FAQ toggle logic
+            const faqBtn = document.querySelector('.contact-cta-suvarnaprashan');
+            const faqContainer = document.getElementById('suvarnaprashan-faq-container');
+
+            if (faqBtn && faqContainer) {
+                faqBtn.addEventListener('click', () => {
+                    faqContainer.classList.toggle('visible');
+                    if (faqContainer.classList.contains('visible')) {
+                        faqBtn.innerHTML = '<i class="fas fa-times"></i> Hide FAQ';
+                        faqBtn.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                    } else {
+                        faqBtn.innerHTML = '<i class="fas fa-question-circle"></i> Suvarnaprashan FAQ';
+                    }
+                });
+            }
+
+            // Display the next dose automatically
+            displayNextDose();
+
+            // Sidebar logic
+            const menuToggle = document.querySelector('.menu-toggle');
+            const sidebar = document.getElementById('vertical-nav-sidebar');
+            const sidebarOverlay = document.querySelector('.sidebar-overlay');
+            const closeSidebarBtn = document.querySelector('.close-sidebar-btn');
+            
+            function openSidebar() {
+                if (menuToggle) { menuToggle.classList.add('active'); }
+                if (sidebar) { sidebar.classList.add('active'); }
+                if (sidebarOverlay) { sidebarOverlay.classList.add('active'); }
+                document.body.classList.add('sidebar-open');
+            }
+            function closeSidebar() {
+                if (menuToggle) { menuToggle.classList.remove('active'); }
+                if (sidebar) { sidebar.classList.remove('active'); }
+                if (sidebarOverlay) { sidebarOverlay.classList.remove('active'); }
+                document.body.classList.remove('sidebar-open');
+            }
+            if (menuToggle) {
+                menuToggle.addEventListener('click', openSidebar);
+            }
+            if (sidebarOverlay) {
+                sidebarOverlay.addEventListener('click', closeSidebar);
+            }
+            if (closeSidebarBtn) {
+                closeSidebarBtn.addEventListener('click', closeSidebar);
+            }
+            
+            // Close sidebar when a link is clicked
+            document.querySelectorAll('#vertical-nav-sidebar a').forEach(link => {
+                if (link) {
+                    link.addEventListener('click', () => {
+                        closeSidebar();
+                    });
+                }
+            });
+        });
     </script>
 </body>
 </html>
