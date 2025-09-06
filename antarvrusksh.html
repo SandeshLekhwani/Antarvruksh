@@ -691,6 +691,24 @@ window.safeFbq = function(){ try{ return fbq.apply(null, arguments); }catch(e){}
             if (sidebarOverlay) sidebarOverlay.addEventListener('click', closeSidebar);
             if (closeSidebarBtn) closeSidebarBtn.addEventListener('click', closeSidebar);
             document.querySelectorAll('#vertical-nav-sidebar a').forEach(link => { link.addEventListener('click', () => closeSidebar()); });
+
+            // FAQ toggle logic
+            const faqToggleButton = document.querySelector('.contact-cta-suvarnaprashan');
+            const faqContainer = document.getElementById('suvarnaprashan-faq-container');
+            const faqIcon = faqToggleButton.querySelector('i');
+
+            if (faqToggleButton && faqContainer && faqIcon) {
+                faqToggleButton.addEventListener('click', () => {
+                    const isVisible = faqContainer.classList.toggle('visible');
+                    // Update button text and icon
+                    if (isVisible) {
+                        faqToggleButton.innerHTML = '<i class="fas fa-question-circle"></i> Hide FAQ';
+                    } else {
+                        faqToggleButton.innerHTML = '<i class="fas fa-question-circle"></i> Suvarnaprashan FAQ';
+                    }
+                    safeFbq('trackCustom', 'FAQToggle', { state: isVisible ? 'open' : 'closed' });
+                });
+            }
         });
     </script>
 </body>
